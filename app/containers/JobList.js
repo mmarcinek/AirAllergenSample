@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import realm from '../store/realm';
+import { Button } from 'react-native-material-design';
 import Orientation from 'react-native-orientation';
 
 
@@ -170,11 +171,10 @@ class JobList extends Component {
               placeholder='Zipcode'/>
 
           </Form>
-          {/* <Button
-            raised
-            icon={{name: 'save'}}
-            title='Save Job' 
-            onPress={() => { this.saveJob()} } /> */}
+          <Button
+            raised={true} 
+            value="NORMAL RAISED"
+            onPress={() => { this.saveJob()} } />
         </View>
       </Modal>  
       </View>      

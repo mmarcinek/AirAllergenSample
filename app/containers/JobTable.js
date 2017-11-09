@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import realm from '../store/realm';
+import { Button } from 'react-native-material-design';
 import Orientation from 'react-native-orientation';
 
 
@@ -229,11 +230,10 @@ class JobTable extends Component {
                   placeholder='Notes'/>
 
               </Form>
-              {/* <Button
-              raised
-              icon={{name: 'save'}}
-              title='Save Job' 
-              onPress={() => { this.saveSample()} } /> */}
+              <Button
+              raised={true}
+              value="NORMAL RAISED"
+              onPress={() => { this.saveSample()} } />
             </ScrollView>
           </View>
         </Modal>  
