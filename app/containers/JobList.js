@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
-import { ActionCreators } from '../actions';
 import realm from '../store/realm';
 import Orientation from 'react-native-orientation';
 
