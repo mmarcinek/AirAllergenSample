@@ -7,8 +7,8 @@ class App extends Component {ß
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators(ActionCreators, dispatch)
-}
+// function mapDispatchToProps(dispatch){
+//   return bindActionCreators(ActionCreators, dispatch)
+// }
 
 export default App;
