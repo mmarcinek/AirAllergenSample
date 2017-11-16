@@ -25,22 +25,6 @@ class JobTable extends Component {
     super(props)
 
     this.jobDetails = Array.from(realm.objects('JobTable'))
-    // if (this.jobDetails.length < 1 || this.jobDetails == null || this.jobDetails == {}) {
-    //   realm.write(() => {
-    //     realm.create('JobTable', {
-    //       table_id: this.props.navigation.state.params.job_id,
-    //       sample_id: 'BD123',
-    //       location: 'Bathroom',
-    //       test_type: 'Test',
-    //       volume: 15,
-    //       area: 15,
-    //       TAT: '?',
-    //       RH: 77.5,
-    //       temp: 22,
-    //       notes: 'Some Notes'
-    //     })
-    //   })
-    // }
 
     if (this.jobDetails.length){
       this.jobHeader = Object.keys(this.jobDetails[0]);
