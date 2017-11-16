@@ -25,35 +25,21 @@ class JobList extends Component {
     super(props);
 
     this.jobResults = Array.from(realm.objects('Job').sorted('createdAt'));
-    if (this.jobResults.length < 1) {
-      realm.write(() => {
-        realm.create('Job', {
-          job_id: 'ed441234', 
-          uploaded: false, 
-          company: 'Foo Company', 
-          address_1: '456 Buford highway',
-          address_2: '',
-          city: 'Atlanta',
-          state: 'GA',
-          zipcode: 30307,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        })
+   
+    if (this.jobResults.length ) {
+      this.jobList = this.jobResults.map((job) => {
+        return(
+          <View onPress={() => this.jobSelect(job)} key={job.job_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
+            <TouchableHighlight style={{width: 75, height: 40}} onPress={() => { this.jobSelect(job) }}>
+              <Text>Select</Text>
+            </TouchableHighlight>
+            <Text style={{width: 150, height: 40}}>{job.job_id}</Text>
+            <Text style={{width: 150, height: 40}}>{job.company}</Text>
+          </View>
+        )
       })
     }
     
-    this.jobList = this.jobResults.map((job) => {
-      return(
-        <View onPress={() => this.jobSelect(job)} key={job.job_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
-          <TouchableHighlight style={{width: 75, height: 40}} onPress={() => { this.jobSelect(job) }}>
-            <Text>Select</Text>
-          </TouchableHighlight>
-          <Text style={{width: 150, height: 40}}>{job.job_id}</Text>
-          <Text style={{width: 150, height: 40}}>{job.company}</Text>
-        </View>
-      )
-    })
-
     this.state = {
       modalVisible: false,
       formData: {}

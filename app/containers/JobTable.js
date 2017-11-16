@@ -25,43 +25,42 @@ class JobTable extends Component {
     super(props)
 
     this.jobDetails = Array.from(realm.objects('JobTable'))
-    console.log(this.jobDetails)
+    // if (this.jobDetails.length < 1 || this.jobDetails == null || this.jobDetails == {}) {
+    //   realm.write(() => {
+    //     realm.create('JobTable', {
+    //       table_id: this.props.navigation.state.params.job_id,
+    //       sample_id: 'BD123',
+    //       location: 'Bathroom',
+    //       test_type: 'Test',
+    //       volume: 15,
+    //       area: 15,
+    //       TAT: '?',
+    //       RH: 77.5,
+    //       temp: 22,
+    //       notes: 'Some Notes'
+    //     })
+    //   })
+    // }
 
-    if (this.jobDetails.length < 1 || this.jobDetails == null || this.jobDetails == {}) {
-      realm.write(() => {
-        realm.create('JobTable', {
-          table_id: this.props.navigation.state.params.job_id,
-          sample_id: 'BD123',
-          location: 'Bathroom',
-          test_type: 'Test',
-          volume: 15,
-          area: 15,
-          TAT: '?',
-          RH: 77.5,
-          temp: 22,
-          notes: 'Some Notes'
-        })
+    if (this.jobDetails.length){
+      this.jobHeader = Object.keys(this.jobDetails[0]);
+
+      this.jobDetailsList = this.jobDetails.map((detail) =>{
+        return (
+          <View key={detail.sample_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
+            <Text style={{width: 75, height: 40}}>{detail.sample_id}</Text>
+            <Text style={{width: 100, height: 40}}>{detail.location}</Text>
+            <Text style={{width: 75, height: 40}}>{detail.test_type}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.volume}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.area}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.TAT}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.RH}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.temp}</Text>
+            <Text style={{width: 100, height: 40}}>{detail.notes}</Text>
+          </View>
+        )
       })
     }
-
-    this.jobHeader = Object.keys(this.jobDetails[0]);
-    
-
-    this.jobDetailsList = this.jobDetails.map((detail) =>{
-      return (
-        <View key={detail.sample_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
-          <Text style={{width: 75, height: 40}}>{detail.sample_id}</Text>
-          <Text style={{width: 100, height: 40}}>{detail.location}</Text>
-          <Text style={{width: 75, height: 40}}>{detail.test_type}</Text>
-          <Text style={{width: 50, height: 40}}>{detail.volume}</Text>
-          <Text style={{width: 50, height: 40}}>{detail.area}</Text>
-          <Text style={{width: 50, height: 40}}>{detail.TAT}</Text>
-          <Text style={{width: 50, height: 40}}>{detail.RH}</Text>
-          <Text style={{width: 50, height: 40}}>{detail.temp}</Text>
-          <Text style={{width: 100, height: 40}}>{detail.notes}</Text>
-        </View>
-      )
-    })
 
     this.state = {
       modalVisible: false,
@@ -150,15 +149,15 @@ class JobTable extends Component {
         </View>
         <ScrollView>
           <View style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
-            <Text style={{width: 75, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.sample_id}</Text>
-            <Text style={{width: 100, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.location}</Text>
-            <Text style={{width: 75, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.test_type}</Text>
-            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.volume}</Text>
-            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.area}</Text>
-            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.TAT}</Text>
-            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.RH}</Text>
-            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.temp}</Text>
-            <Text style={{width: 100, height: 20, backgroundColor: '#d3d3d3'}}>{this.jobHeader.notes}</Text>
+            <Text style={{width: 75, height: 20, backgroundColor: '#d3d3d3'}}>Sample Id</Text>
+            <Text style={{width: 100, height: 20, backgroundColor: '#d3d3d3'}}>Location</Text>
+            <Text style={{width: 75, height: 20, backgroundColor: '#d3d3d3'}}>Test Type</Text>
+            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>Volume</Text>
+            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>Area</Text>
+            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>TAT</Text>
+            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>RH</Text>
+            <Text style={{width: 50, height: 20, backgroundColor: '#d3d3d3'}}>Temp</Text>
+            <Text style={{width: 100, height: 20, backgroundColor: '#d3d3d3'}}>Notes</Text>
           </View>
           <View>
             {this.jobDetailsList}
@@ -166,6 +165,7 @@ class JobTable extends Component {
           <Button
             raised
             icon={{name: 'add'}}
+            text="Add Sample"
             title='Add a Sample' 
             onPress={() => {
               this.setModalVisible(!this.state.modalVisible)
@@ -232,6 +232,7 @@ class JobTable extends Component {
               </Form>
               <Button
               raised={true}
+              text="Save Sample"
               value="NORMAL RAISED"
               onPress={() => { this.saveSample()} } />
             </ScrollView>
