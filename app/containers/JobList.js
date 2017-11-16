@@ -118,6 +118,7 @@ class JobList extends Component {
         <Button
             raised
             icon={{name: 'add'}}
+            text="Add a Job"
             title='Add a Job' 
             onPress={() => {
               this.setModalVisible(!this.state.modalVisible)
@@ -173,6 +174,7 @@ class JobList extends Component {
           </Form>
           <Button
             raised={true} 
+            text="Save Job"
             value="NORMAL RAISED"
             onPress={() => { this.saveJob()} } />
         </View>
