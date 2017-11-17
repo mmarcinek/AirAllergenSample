@@ -18,9 +18,9 @@ Job.schema = {
   }
 }
 
-class JobTable extends Realm.Object {}
-  JobTable.schema = {
-    name: 'JobTable',
+class Sample extends Realm.Object {}
+  Sample.schema = {
+    name: 'Sample',
     properties: {
       table_id: { type: 'string'},
       sample_id: {type: 'string'},
@@ -35,7 +35,7 @@ class JobTable extends Realm.Object {}
     } 
   }
 
-export default new Realm({schema: [Job, JobTable]});  
+export default new Realm({schema: [Job, Sample]});  
 
 
 

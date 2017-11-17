@@ -24,10 +24,13 @@ class JobTable extends Component {
   constructor(props){
     super(props)
 
-    this.jobDetails = Array.from(realm.objects('JobTable').filtered('table_id'))
+    let allSamples = realm.objects('Sample')
+    let tableData = allSamples.filtered(`table_id = "${this.props.navigation.state.params.job_id}"`)
+    this.jobDetails = Array.from(tableData)
 
-    if (jobDetails){
-      this.jobDetailsList = this.jobDetails.map((detail) =>{
+    if (this.jobDetails.length > 0 ){
+      this.samples = this.jobDetails;
+      this.samplesList = this.samples.map((detail) =>{
         return (
           <View key={detail.sample_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
             <Text style={{width: 75, height: 40}}>{detail.sample_id}</Text>
@@ -73,7 +76,7 @@ class JobTable extends Component {
 
   saveSample(params){
     realm.write(() => {
-      sampleList.push({
+      realm.create('Sample', {
         table_id: this.props.navigation.state.params.job_id,
         sample_id: this.state.formData.sample_id,
         location: this.state.formData.location,
@@ -142,7 +145,7 @@ class JobTable extends Component {
             <Text style={{width: 100, height: 20, backgroundColor: '#d3d3d3'}}>Notes</Text>
           </View>
           <View>
-            {this.jobDetailsList}
+            {this.samplesList}
           </View>
           <Button
             raised
