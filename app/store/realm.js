@@ -14,8 +14,7 @@ Job.schema = {
     state: { type:'string' },
     zipcode: { type:'int' },
     createdAt: { type:'date' },
-    updatedAt: { type:'date' },
-    tables: {type: 'list', objectType: 'JobTable'}
+    updatedAt: { type:'date' }
   }
 }
 
@@ -23,7 +22,6 @@ class JobTable extends Realm.Object {}
   JobTable.schema = {
     name: 'JobTable',
     properties: {
-      prop: {type: 'linkingObjects', objectType: 'Job', property: 'tables'},
       table_id: { type: 'string'},
       sample_id: {type: 'string'},
       location: {type: 'string'},

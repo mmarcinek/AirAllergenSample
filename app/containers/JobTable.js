@@ -24,7 +24,7 @@ class JobTable extends Component {
   constructor(props){
     super(props)
 
-    this.jobDetails = Array.from(realm.objects('JobTable'))
+    this.jobDetails = Array.from(realm.objects('JobTable').filtered('table_id'))
 
     if (jobDetails){
       this.jobDetailsList = this.jobDetails.map((detail) =>{
