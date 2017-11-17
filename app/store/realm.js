@@ -15,7 +15,7 @@ Job.schema = {
     zipcode: { type:'int' },
     createdAt: { type:'date' },
     updatedAt: { type:'date' },
-    tables: 'JobTable[]' 
+    tables: 'JobTable' 
   }
 }
 

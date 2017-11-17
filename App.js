@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav } from '../config/router';
+import { Nav } from './app/config/router';
 
 class App extends Component {ß
   render(){
