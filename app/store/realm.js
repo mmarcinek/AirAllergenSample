@@ -19,8 +19,6 @@ Job.schema = {
   }
 }
 
-let sampleList = Job.tables
-
 class JobTable extends Realm.Object {}
   JobTable.schema = {
     name: 'JobTable',

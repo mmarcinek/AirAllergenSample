@@ -24,26 +24,25 @@ class JobTable extends Component {
   constructor(props){
     super(props)
 
-    this.jobDetails = Array.from(realm.objects('Job'))
-    console.log(this.jobDetails)
-    
-    // if (jobDetails){
-      // this.jobDetailsList = this.jobDetails.map((detail) =>{
-      //   return (
-      //     <View key={detail.sample_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
-      //       <Text style={{width: 75, height: 40}}>{detail.sample_id}</Text>
-      //       <Text style={{width: 100, height: 40}}>{detail.location}</Text>
-      //       <Text style={{width: 75, height: 40}}>{detail.test_type}</Text>
-      //       <Text style={{width: 50, height: 40}}>{detail.volume}</Text>
-      //       <Text style={{width: 50, height: 40}}>{detail.area}</Text>
-      //       <Text style={{width: 50, height: 40}}>{detail.TAT}</Text>
-      //       <Text style={{width: 50, height: 40}}>{detail.RH}</Text>
-      //       <Text style={{width: 50, height: 40}}>{detail.temp}</Text>
-      //       <Text style={{width: 100, height: 40}}>{detail.notes}</Text>
-      //     </View>
-      //   )
-      // })
-    // }
+    this.jobDetails = Array.from(realm.objects('JobTable'))
+
+    if (jobDetails){
+      this.jobDetailsList = this.jobDetails.map((detail) =>{
+        return (
+          <View key={detail.sample_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
+            <Text style={{width: 75, height: 40}}>{detail.sample_id}</Text>
+            <Text style={{width: 100, height: 40}}>{detail.location}</Text>
+            <Text style={{width: 75, height: 40}}>{detail.test_type}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.volume}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.area}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.TAT}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.RH}</Text>
+            <Text style={{width: 50, height: 40}}>{detail.temp}</Text>
+            <Text style={{width: 100, height: 40}}>{detail.notes}</Text>
+          </View>
+        )
+      })
+    }
 
     this.state = {
       modalVisible: false,
