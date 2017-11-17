@@ -117,52 +117,54 @@ class JobList extends Component {
         onRequestClose={() => {this.setModalVisible(!this.state.modalVisible)}}
         >
         <View style={{marginTop: 22}}>
-        <Form
-          ref='jobForm'
-          onFocus={this.handleFormFocus.bind(this)}
-          onChange={this.handleFormChange.bind(this)}
-          label="Job Information">
-          <InputField 
-              ref='job_id' 
-              label='Job Id' 
-              placeholder='Job ID'/>
+          <ScrollView>
+            <Form
+              ref='jobForm'
+              onFocus={this.handleFormFocus.bind(this)}
+              onChange={this.handleFormChange.bind(this)}
+              label="Job Information">
+              <InputField 
+                  ref='job_id' 
+                  label='Job Id' 
+                  placeholder='Job ID'/>
+              
+              <InputField 
+                  ref='company' 
+                  label='Company'
+                  placeholder='Company'/>
           
-          <InputField 
-              ref='company' 
-              label='Company'
-              placeholder='Company'/>
-      
-          <InputField 
-              ref='address_1' 
-              label='Address 1'
-              placeholder='Address 1'/>
-          
-          <InputField 
-              ref='address_2' 
-              label='Address 2'
-              placeholder='address 2'/>
-          
-          <InputField 
-              ref='city' 
-              label='City' 
-              placeholder='City'/>
-          
-          <InputField 
-              ref='state' 
-              label='State'
-              placeholder='State'/>
+              <InputField 
+                  ref='address_1' 
+                  label='Address 1'
+                  placeholder='Address 1'/>
+              
+              <InputField 
+                  ref='address_2' 
+                  label='Address 2'
+                  placeholder='address 2'/>
+              
+              <InputField 
+                  ref='city' 
+                  label='City' 
+                  placeholder='City'/>
+              
+              <InputField 
+                  ref='state' 
+                  label='State'
+                  placeholder='State'/>
 
-          <InputField 
-              ref='zipcode' 
-              label='Zipcode'
-              placeholder='Zipcode'/>
+              <InputField 
+                  ref='zipcode' 
+                  label='Zipcode'
+                  placeholder='Zipcode'/>
 
-          </Form>
-          <Button
-            raised={true} 
-            text="Save Job"
-            value="NORMAL RAISED"
-            onPress={() => { this.saveJob()} } />
+            </Form>
+            <Button
+              raised={true} 
+              text="Save Job"
+              value="NORMAL RAISED"
+              onPress={() => { this.saveJob()} } />
+          </ScrollView>
         </View>
       </Modal>  
       </View>      
