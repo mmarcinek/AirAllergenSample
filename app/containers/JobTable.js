@@ -24,27 +24,26 @@ class JobTable extends Component {
   constructor(props){
     super(props)
 
-    this.jobDetails = Array.from(realm.objects('JobTable'))
-
-    if (this.jobDetails.length){
-      this.jobHeader = Object.keys(this.jobDetails[0]);
-
-      this.jobDetailsList = this.jobDetails.map((detail) =>{
-        return (
-          <View key={detail.sample_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
-            <Text style={{width: 75, height: 40}}>{detail.sample_id}</Text>
-            <Text style={{width: 100, height: 40}}>{detail.location}</Text>
-            <Text style={{width: 75, height: 40}}>{detail.test_type}</Text>
-            <Text style={{width: 50, height: 40}}>{detail.volume}</Text>
-            <Text style={{width: 50, height: 40}}>{detail.area}</Text>
-            <Text style={{width: 50, height: 40}}>{detail.TAT}</Text>
-            <Text style={{width: 50, height: 40}}>{detail.RH}</Text>
-            <Text style={{width: 50, height: 40}}>{detail.temp}</Text>
-            <Text style={{width: 100, height: 40}}>{detail.notes}</Text>
-          </View>
-        )
-      })
-    }
+    this.jobDetails = Array.from(realm.objects('Job'))
+    console.log(this.jobDetails)
+    
+    // if (jobDetails){
+      // this.jobDetailsList = this.jobDetails.map((detail) =>{
+      //   return (
+      //     <View key={detail.sample_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
+      //       <Text style={{width: 75, height: 40}}>{detail.sample_id}</Text>
+      //       <Text style={{width: 100, height: 40}}>{detail.location}</Text>
+      //       <Text style={{width: 75, height: 40}}>{detail.test_type}</Text>
+      //       <Text style={{width: 50, height: 40}}>{detail.volume}</Text>
+      //       <Text style={{width: 50, height: 40}}>{detail.area}</Text>
+      //       <Text style={{width: 50, height: 40}}>{detail.TAT}</Text>
+      //       <Text style={{width: 50, height: 40}}>{detail.RH}</Text>
+      //       <Text style={{width: 50, height: 40}}>{detail.temp}</Text>
+      //       <Text style={{width: 100, height: 40}}>{detail.notes}</Text>
+      //     </View>
+      //   )
+      // })
+    // }
 
     this.state = {
       modalVisible: false,
@@ -54,7 +53,7 @@ class JobTable extends Component {
 
   componentDidMount() {
     // this locks the view to Landscape
-    Orientation.lockToLandscape();
+    Orientation.lockToLandscape();    
   }
   componentWillUnmount() {
     Orientation.unlockAllOrientations(); 
@@ -75,7 +74,7 @@ class JobTable extends Component {
 
   saveSample(params){
     realm.write(() => {
-      realm.create('JobTable', {
+      sampleList.push({
         table_id: this.props.navigation.state.params.job_id,
         sample_id: this.state.formData.sample_id,
         location: this.state.formData.location,

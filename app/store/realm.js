@@ -15,9 +15,11 @@ Job.schema = {
     zipcode: { type:'int' },
     createdAt: { type:'date' },
     updatedAt: { type:'date' },
-    tables: 'JobTable' 
+    tables: {type: 'list', objectType: 'JobTable'}
   }
 }
+
+let sampleList = Job.tables
 
 class JobTable extends Realm.Object {}
   JobTable.schema = {
