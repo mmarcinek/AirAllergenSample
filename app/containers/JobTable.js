@@ -85,11 +85,11 @@ class JobTable extends Component {
         sample_id: this.state.formData.sample_id,
         location: this.state.formData.location || '',
         test_type: this.state.formData.test_type || '',
-        volume: Number(this.state.formData.volume) || '',
-        area: Number(this.state.formData.area) || '',
-        TAT: this.state.formData.TAT || '',
-        RH: Number(this.state.formData.RH) || '',
-        temp: Number(this.state.formData.temp) || '',
+        volume: Number(this.state.formData.volume) || 0,
+        area: Number(this.state.formData.area) || 0,
+        TAT: Number(this.state.formData.TAT) || 0,
+        RH: Number(this.state.formData.RH) || 0,
+        temp: Number(this.state.formData.temp) || 0,
         notes: this.state.formData.notes || ''
       })
     });
