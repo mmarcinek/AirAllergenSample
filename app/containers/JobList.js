@@ -76,12 +76,12 @@ class JobList extends Component {
       realm.create('Job', {
         job_id: this.state.formData.job_id, 
         uploaded: false, 
-        company: this.state.formData.company, 
-        address_1: this.state.formData.address_1,
+        company: this.state.formData.company || '', 
+        address_1: this.state.formData.address_1 || '',
         address_2: this.state.formData.address_2 || '',
-        city: this.state.formData.city,
-        state: this.state.formData.state,
-        zipcode: Number(this.state.formData.zipcode),
+        city: this.state.formData.city || '',
+        state: this.state.formData.state || '',
+        zipcode: Number(this.state.formData.zipcode) || '',
         createdAt: new Date(),
         updatedAt: new Date()
       })
