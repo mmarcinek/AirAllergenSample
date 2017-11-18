@@ -81,7 +81,7 @@ class JobList extends Component {
         address_2: this.state.formData.address_2 || '',
         city: this.state.formData.city || '',
         state: this.state.formData.state || '',
-        zipcode: Number(this.state.formData.zipcode) || '',
+        zipcode: Number(this.state.formData.zipcode) || 11111,
         createdAt: new Date(),
         updatedAt: new Date()
       })
