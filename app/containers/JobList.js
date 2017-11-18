@@ -24,8 +24,17 @@ class JobList extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      modalVisible: false,
+      formData: {}
+    }
+
+    this.getJobList();
+  }
+
+  getJobList(){
     this.jobResults = Array.from(realm.objects('Job').sorted('createdAt'));
-   
+    
     if (this.jobResults.length ) {
       this.jobList = this.jobResults.map((job) => {
         return(
@@ -39,20 +48,15 @@ class JobList extends Component {
         )
       })
     }
-    
-    this.state = {
-      modalVisible: false,
-      formData: {}
-    }
   }
+  
   componentDidMount() {
-    Orientation.lockToPortrait();
-    
+    // Orientation.lockToPortrait(); 
     // Orientation.addOrientationListener(this._orientationDidChange);
   }
 
   handleFormChange(formData){
-    this.setState({formData:formData})
+    this.setState({formData: formData})
     this.props.onFormChange && this.props.onFormChange(formData);
   }
   handleFormFocus(e, component){
@@ -82,11 +86,10 @@ class JobList extends Component {
         updatedAt: new Date()
       })
     });
-
+  
     this.setState({formData: {}})
     this.setModalVisible(!this.state.modalVisible)
-    this.forceUpdate();
-    
+    this.getJobList();
   }
 
   render(){ 
@@ -163,24 +166,13 @@ class JobList extends Component {
               raised={true} 
               text="Save Job"
               value="NORMAL RAISED"
-              onPress={() => { this.saveJob()} } />
+              onPress={() => { this.saveJob(); this.forceUpdate()}} />
           </ScrollView>
         </View>
       </Modal>  
       </View>      
     )
   }  
-}
-
-
-
-const mapStateToProps = (state, props) => ({
-  // ...getJobList(state),
-  // dataSource: store.jobsDS.cloneWithRows(jobsResults)
-})
-
-const mapDispatchToProps = {
-  // ...ActionCreators
 }
 
 const styles = StyleSheet.create({

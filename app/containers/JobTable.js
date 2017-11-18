@@ -24,6 +24,14 @@ class JobTable extends Component {
   constructor(props){
     super(props)
 
+    this.state = {
+      modalVisible: false,
+      formData: {}
+    }
+    this.getSampleList()
+  }
+
+  getSampleList(){
     let allSamples = realm.objects('Sample')
     let tableData = allSamples.filtered(`table_id = "${this.props.navigation.state.params.job_id}"`)
     this.jobDetails = Array.from(tableData)
@@ -47,12 +55,8 @@ class JobTable extends Component {
       })
     }
 
-    this.state = {
-      modalVisible: false,
-      formData: {}
-    }
   }
-
+  
   componentDidMount() {
     // this locks the view to Landscape
     Orientation.lockToLandscape();    
@@ -92,8 +96,7 @@ class JobTable extends Component {
 
     this.setState({formData: {}})
     this.setModalVisible(!this.state.modalVisible)
-    this.forceUpdate();
-    
+    this.getSampleList();
   }
 
   
