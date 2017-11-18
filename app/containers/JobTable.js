@@ -88,8 +88,8 @@ class JobTable extends Component {
         volume: Number(this.state.formData.volume) || 0,
         area: Number(this.state.formData.area) || 0,
         TAT: Number(this.state.formData.TAT) || 0,
-        RH: Number(this.state.formData.RH) || 0,
-        temp: Number(this.state.formData.temp) || 0,
+        RH: Number(this.state.formData.RH) || 0.0,
+        temp: Number(this.state.formData.temp) || 0.0,
         notes: this.state.formData.notes || ''
       })
     });

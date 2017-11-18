@@ -28,7 +28,7 @@ class Sample extends Realm.Object {}
       test_type: {type: 'string'},
       volume: {type: 'int'},
       area: {type: 'int' },
-      TAT: {type: 'string'},
+      TAT: {type: 'int'},
       RH: {type: 'float' },
       temp: {type: 'float' },
       notes: {type: 'string'}
