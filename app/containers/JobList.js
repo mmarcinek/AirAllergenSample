@@ -92,6 +92,10 @@ class JobList extends Component {
     this.getJobList();
   }
 
+  testView(test){
+    this.props.navigation.navigate('FormView', test)
+  }
+
   render(){ 
     return (
       <View style={styles.container}>
@@ -112,6 +116,12 @@ class JobList extends Component {
             onPress={() => {
               this.setModalVisible(!this.state.modalVisible)
             }} />
+        <Button
+            raised
+            icon={{name: 'add'}}
+            text="Test Form"  
+            title="Test Form"
+            onPress={() => this.testView('test')} />
         </ScrollView>
         <Modal
         animationType="slide"
