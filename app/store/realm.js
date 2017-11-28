@@ -14,7 +14,6 @@ Job.schema = {
     state: { type:'string' },
     zipcode: { type:'int' },
     date: {type:'date'},
-    time: {type:'date'},
     createdAt: { type:'date' },
     updatedAt: { type:'date' }
   }

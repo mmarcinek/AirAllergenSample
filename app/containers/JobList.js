@@ -25,10 +25,7 @@ class JobList extends Component {
     super(props);
 
     this.state = {
-      modalVisible: false,
-      formData: {}
     }
-
     this.getJobList();
   }
 
@@ -54,47 +51,8 @@ class JobList extends Component {
     // Orientation.lockToPortrait(); 
     // Orientation.addOrientationListener(this._orientationDidChange);
   }
-
-  handleFormChange(formData){
-    this.setState({formData: formData})
-    this.props.onFormChange && this.props.onFormChange(formData);
-  }
-
-  handleFormFocus(e, component){
-    //console.log(e, component);
-  }
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
-
   jobSelect(job){
     this.props.navigation.navigate('JobTable', job)
-  }
-
-  saveJob(params){
-    realm.write(() => {
-      realm.create('Job', {
-        job_id: this.state.formData.job_id, 
-        uploaded: false, 
-        client: this.state.formData.client || '', 
-        address_1: this.state.formData.address_1 || '',
-        address_2: this.state.formData.address_2 || '',
-        city: this.state.formData.city || '',
-        state: this.state.formData.state || '',
-        zipcode: Number(this.state.formData.zipcode) || 11111,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      })
-    });
-  
-    this.setState({formData: {}})
-    this.setModalVisible(!this.state.modalVisible)
-    this.getJobList();
-  }
-
-  testView(test){
-    this.props.navigation.navigate('FormView', test)
   }
 
   render(){ 
@@ -109,78 +67,7 @@ class JobList extends Component {
         <View>
           {this.jobList}
         </View>
-        <Button
-            raised
-            icon={{name: 'add'}}
-            text="Add a Job"
-            title='Add a Job' 
-            onPress={() => {
-              this.setModalVisible(!this.state.modalVisible)
-            }} />
-        <Button
-            raised
-            icon={{name: 'add'}}
-            text="Test Form"  
-            title="Test Form"
-            onPress={() => this.testView('test')} />
         </ScrollView>
-        <Modal
-        animationType="slide"
-        transparent={false}
-        visible={this.state.modalVisible}
-        onRequestClose={() => {this.setModalVisible(!this.state.modalVisible)}}
-        >
-        <View style={{marginTop: 22}}>
-          <ScrollView>
-            <Form
-              ref='jobForm'
-              onFocus={this.handleFormFocus.bind(this)}
-              onChange={this.handleFormChange.bind(this)}
-              label="Job Information">
-              <InputField 
-                  ref='job_id' 
-                  label='Job Id' 
-                  placeholder='Job ID'/>
-              
-              <InputField 
-                  ref='company' 
-                  label='Company'
-                  placeholder='Company'/>
-          
-              <InputField 
-                  ref='address_1' 
-                  label='Address 1'
-                  placeholder='Address 1'/>
-              
-              <InputField 
-                  ref='address_2' 
-                  label='Address 2'
-                  placeholder='address 2'/>
-              
-              <InputField 
-                  ref='city' 
-                  label='City' 
-                  placeholder='City'/>
-              
-              <InputField 
-                  ref='state' 
-                  label='State'
-                  placeholder='State'/>
-
-              <InputField 
-                  ref='zipcode' 
-                  label='Zipcode'
-                  placeholder='Zipcode'/>
-
-            </Form>
-            <Button
-              raised={true} 
-              text="Save Job"
-              value="NORMAL RAISED"
-              onPress={() => { this.saveJob(); this.forceUpdate()}} />
-          </ScrollView>
-        </View>
-      </Modal>  
       </View>      
     )
   }  

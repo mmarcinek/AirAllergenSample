@@ -72,18 +72,19 @@ class JobForm extends React.Component{
     this.state = {
       formData: {}
     }
-
   }
+
   handleFormChange(formData){
     formData = {
-      job_id: this.state.formData.job_id || '', 
-      uploaded: false, 
-      client: this.state.formData.client || '', 
-      address_1: this.state.formData.address_1 || '',
-      address_2: this.state.formData.address_2 || '',
-      city: this.state.formData.city || '',
-      state: this.state.formData.state || '',
-      zipcode: Number(this.state.formData.zipcode) || 11111,
+      job_id: this.state.formData.job_id, 
+      client: this.state.formData.client, 
+      address_1: this.state.formData.address_1,
+      address_2: this.state.formData.address_2,
+      city: this.state.formData.city,
+      state: this.state.formData.state,
+      zipcode: Number(this.state.formData.zipcode),
+      date: new Date(),
+      time: new Date(),
       createdAt: new Date(),
       updatedAt: new Date()
     }
@@ -91,6 +92,7 @@ class JobForm extends React.Component{
     this.setState({formData:formData})
     this.props.onFormChange && this.props.onFormChange(formData);
   }
+
   handleFormFocus(e, component){
     //console.log(e, component);
   }
@@ -113,7 +115,7 @@ class JobForm extends React.Component{
         date: new Date(),
         time: new Date(),
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: this.state.formData.time
       })
     });
 
@@ -129,7 +131,6 @@ class JobForm extends React.Component{
     this.refs.jobForm.refs.state.setValue("");
     this.refs.jobForm.refs.zipcode.setValue("");    
     this.refs.jobForm.refs.date.setDate(new Date());
-    this.refs.jobForm.refs.time.setDate(new Date());
   }
 
   render(){
@@ -193,19 +194,14 @@ class JobForm extends React.Component{
               placeholder='Zipcode'
             />
           <Separator />
-            <DatePickerField ref='day'
-              minimumDate={new Date('1/1/1900')}
+            <DatePickerField 
+              ref='date'
+              minimumDate={new Date('1/1/2000')}
               maximumDate={new Date()}
               iconRight={[<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-arrow-forward' size={30} />,
                           <Icon style={{alignSelf:'center', marginLeft:10}} name='ios-arrow-down' size={30} />
                         ]}
               placeholder='Day'/>
-            <TimePickerField ref='time'
-              placeholder='Time'
-              iconLeft={<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-alarm' size={30} />}
-              prettyPrint={true}
-              pickerWrapper={<CustomModal />}
-            />
         </Form>
         <View style={{ flexDirection:'row'}}>
           <TouchableHighlight 
