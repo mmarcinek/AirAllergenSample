@@ -95,6 +95,10 @@ class JobForm extends React.Component{
     //console.log(e, component);
   }
 
+  advanceOnSave(params){
+    this.props.navigation.navigate('JobList', params)
+  }
+
   saveJob() {
     realm.write(() => {
       realm.create('Job', {
@@ -112,6 +116,8 @@ class JobForm extends React.Component{
         updatedAt: new Date()
       })
     });
+
+    this.advanceOnSave('advancing');
   }
 
   resetForm(){
