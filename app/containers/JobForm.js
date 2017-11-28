@@ -95,17 +95,14 @@ class FormView extends React.Component{
 
   }
   resetForm(){
-
     this.refs.registrationForm.refs.first_name.setValue("");
     this.refs.registrationForm.refs.last_name.setValue("");
     this.refs.registrationForm.refs.other_input.setValue("");
     this.refs.registrationForm.refs.meeting.setDate(new Date());
     this.refs.registrationForm.refs.has_accepted_conditions.setValue(false);
   }
+
   render(){
-
-
-
     return (<ScrollView keyboardShouldPersistTaps={'always'} style={{ height:200}}>
       <Form
         ref='registrationForm'
