@@ -59,6 +59,7 @@ class JobList extends Component {
     this.setState({formData: formData})
     this.props.onFormChange && this.props.onFormChange(formData);
   }
+
   handleFormFocus(e, component){
     //console.log(e, component);
   }

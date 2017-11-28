@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import Home from '../containers/Home';
 import JobList from '../containers/JobList';
 import JobTable from '../containers/JobTable';
-import JobForm from '../containers/FormView';
+import JobForm from '../containers/JobForm';
   
 export const Nav = StackNavigator({
   Home: {screen: Home, navigationOptions: { title: 'Home' } },

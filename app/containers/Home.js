@@ -27,7 +27,7 @@ const {
     render(){
       return(
         <View style={styles.container}>
-          <TouchableHighlight style={styles.button} onPress={() => { this.createJob('FormView')} }>
+          <TouchableHighlight style={styles.button} onPress={() => { this.createJob('JobForm')} }>
             <Text style={styles.btnText}>Create new Job</Text>
           </TouchableHighlight>
           <TouchableHighlight style={styles.button} onPress={()=> { this.jobsList('JobList') } }>

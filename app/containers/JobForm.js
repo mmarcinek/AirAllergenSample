@@ -1,8 +1,3 @@
-/*
-This is a view i use in a test app,
-very useful to list all the use cases
-*/
-
 import React from 'react';
 
 import {
@@ -67,24 +62,26 @@ class WrappedIcon extends React.Component {
 class FormView extends React.Component{
   constructor(props){
     super(props);
+
     this.state = {
       formData:{}
     }
+
   }
   handleFormChange(formData){
-    /*
-    formData will contain all the values of the form,
-    in this example.
-
     formData = {
-    first_name:"",
-    last_name:"",
-    gender: '',
-    birthday: Date,
-    has_accepted_conditions: bool
+      job_id: this.state.formData.job_id || '', 
+      uploaded: false, 
+      company: this.state.formData.company || '', 
+      address_1: this.state.formData.address_1 || '',
+      address_2: this.state.formData.address_2 || '',
+      city: this.state.formData.city || '',
+      state: this.state.formData.state || '',
+      zipcode: Number(this.state.formData.zipcode) || 11111,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
-    */
-
+  
     this.setState({formData:formData})
     this.props.onFormChange && this.props.onFormChange(formData);
   }
@@ -95,30 +92,33 @@ class FormView extends React.Component{
 
   }
   resetForm(){
-    this.refs.registrationForm.refs.first_name.setValue("");
-    this.refs.registrationForm.refs.last_name.setValue("");
-    this.refs.registrationForm.refs.other_input.setValue("");
-    this.refs.registrationForm.refs.meeting.setDate(new Date());
-    this.refs.registrationForm.refs.has_accepted_conditions.setValue(false);
+    this.refs.jobForm.refs.job_id.setValue("");
+    this.refs.jobForm.refs.client.setValue("");
+    this.refs.jobForm.refs.address_1.setValue("");
+    this.refs.jobForm.refs.address_2.setValue("");
+    this.refs.jobForm.refs.city.setValue("");  
+    this.refs.jobForm.refs.state.setValue("");
+    this.refs.jobForm.refs.zip.setValue("");    
+    this.refs.jobForm.refs.date.setDate(new Date());
+    this.refs.jobForm.refs.time.setDate(new Date());
   }
 
   render(){
     return (<ScrollView keyboardShouldPersistTaps={'always'} style={{ height:200}}>
       <Form
-        ref='registrationForm'
+        ref='jobForm'
         onFocus={this.handleFormFocus.bind(this)}
         onChange={this.handleFormChange.bind(this)}
-        label="Personal Information">
+        label="Job Information">
         <Separator />
         <InputField
-          ref='first_name'
-          label='First Name'
-          placeholder='First Name'
+          ref='job_id'
+          label='Job Id'
+          placeholder='JobId'
           helpText={((self)=>{
-
             if(Object.keys(self.refs).length !== 0){
-              if(!self.refs.registrationForm.refs.first_name.valid){
-                return self.refs.registrationForm.refs.first_name.validationErrors.join("\n");
+              if(!self.refs.jobForm.refs.job_id.valid){
+                return self.refs.jobForm.refs.job_id.validationErrors.join("\n");
               }
 
             }
@@ -135,59 +135,53 @@ class FormView extends React.Component{
             if(!value) return true;
             var matches = value.match(/\d+/g);
             if (matches != null) {
-                return "First Name can't contain numbers";
-            }
-
-            return true;
-          }, (value)=>{
-            if(!value) return true;
-            if(value.indexOf('4')!=-1){
-              return "I can't stand number 4";
+                return "A job id is required";
             }
             return true;
           }]}
           />
-        <InputField
-          iconLeft={<WrappedIcon style={{marginLeft:10, alignSelf:'center', color:'#793315'}} name='ios-american-football-outline' size={30} />}
-        ref='last_name' value="Default Value" placeholder='Last Name'/>
-        <InputField
-          multiline={true}
-          ref='other_input'
-          placeholder='Other Input'
-          helpText='this is an helpful text it can be also very very long and it will wrap' />
           <InputField
-            ref='email'
-            keyboardType='email-address'
-            placeholder='Email fields'
-            helpTextComponent={<Text>Custom Help Text Component</Text>} />
+          ref='client'
+          label='client'
+          placeholder='client'
+          />
+        <Separator />  
+          <Text>Address</Text>
+          <InputField
+            ref='address_1'
+            label='Address 1'
+            placeholder='Address 1'
+            />
+          <InputField
+            ref='address_2'
+            label='Address 2'
+            placeholder='Address 2'
+          />
+          <InputField
+            ref='city'
+            label='City'
+            placeholder='City'
+          />
+          <InputField
+            ref='state'
+            label='State'
+            placeholder='State'
+          />
+          <InputField
+            ref='zipcode'
+            label='Zipcode'
+            placeholder='Zipcode'
+          />
         <Separator />
-        <LinkField
-          label="LinkField, it acts like a button" onPress={()=>{}}
-          iconLeft={<Icon style={{marginLeft:10, alignSelf:'center', color:'#793315'}} name='ios-american-football-outline' size={30} />}
-          iconRight={<Icon style={{alignSelf:'center',marginRight:10, color:'#969696'}} name='ios-arrow-forward' size={30} />}
-          />
-        <SwitchField label='I accept Terms & Conditions'
-          ref="has_accepted_conditions"
-          helpText='Please read carefully the terms & conditions'/>
-        <PickerField ref='gender'
-          label='Gender'
-          value='female'
-          options={{
-            "": '',
-            male: 'Male',
-            female: 'Female'
-          }}
-
-          />
-          <DatePickerField ref='birthday'
+          <DatePickerField ref='day'
           minimumDate={new Date('1/1/1900')}
           maximumDate={new Date()}
           iconRight={[<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-arrow-forward' size={30} />,
                       <Icon style={{alignSelf:'center', marginLeft:10}} name='ios-arrow-down' size={30} />
                       ]}
-          placeholder='Birthday'/>
-        <TimePickerField ref='alarm_time'
-      placeholder='Set Alarm'
+          placeholder='Day'/>
+        <TimePickerField ref='time'
+      placeholder='Time'
       iconLeft={<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-alarm' size={30} />}
       prettyPrint={true}
       pickerWrapper={<CustomModal />}
@@ -206,17 +200,7 @@ class FormView extends React.Component{
       <View style={[{
           flex:1, alignItems:'center'
         }
-      ]}><Text style={{fontSize:19,padding:15,}}>Reset</Text></View></TouchableHighlight>
-      <TouchableHighlight
-      disabled={!this.state.formData.has_accepted_conditions}
-      onPress={()=>this.refs.registrationForm.refs.other_input.focus()}
-      underlayColor='#78ac05'>
-      <View style={[{
-          flex:1, alignItems:'center',
-          borderColor:(this.state.formData.has_accepted_conditions)?'#2398c9':'grey',
-          borderWidth:5
-        },
-      ]}><Text style={{fontSize:19,padding:15,}}>Focus First Name</Text></View></TouchableHighlight>
+      ]}><Text style={{fontSize:19,padding:15,}}>Clear</Text></View></TouchableHighlight>
       </ScrollView>);
     }
   }

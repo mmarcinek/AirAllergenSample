@@ -7,12 +7,14 @@ Job.schema = {
     properties: {
     job_id: {type: 'string', indexed: true },
     uploaded: { type: 'bool' },
-    company: {type: 'string' },
+    client: {type: 'string' },
     address_1: {type: 'string'},
     address_2: {type: 'string'},
     city: { type:'string' },
     state: { type:'string' },
     zipcode: { type:'int' },
+    date: {type:'date'},
+    time: {type:'date'},
     createdAt: { type:'date' },
     updatedAt: { type:'date' }
   }
