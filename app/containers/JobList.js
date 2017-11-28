@@ -43,7 +43,7 @@ class JobList extends Component {
               <Text>Select</Text>
             </TouchableHighlight>
             <Text style={{width: 150, height: 40}}>{job.job_id}</Text>
-            <Text style={{width: 150, height: 40}}>{job.company}</Text>
+            <Text style={{width: 150, height: 40}}>{job.client}</Text>
           </View>
         )
       })
@@ -77,7 +77,7 @@ class JobList extends Component {
       realm.create('Job', {
         job_id: this.state.formData.job_id, 
         uploaded: false, 
-        company: this.state.formData.company || '', 
+        client: this.state.formData.client || '', 
         address_1: this.state.formData.address_1 || '',
         address_2: this.state.formData.address_2 || '',
         city: this.state.formData.city || '',
