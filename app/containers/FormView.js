@@ -106,7 +106,7 @@ class FormView extends React.Component{
 
 
 
-    return (<ScrollView keyboardShouldPersistTaps={true} style={{ height:200}}>
+    return (<ScrollView keyboardShouldPersistTaps={'always'} style={{ height:200}}>
       <Form
         ref='registrationForm'
         onFocus={this.handleFormFocus.bind(this)}
