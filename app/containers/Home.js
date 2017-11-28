@@ -16,21 +16,23 @@ const {
 
     }
 
-    createJob(params){
-      this.props.navigation.navigate(params, params)
-    }
-
-    jobsList(params){
+    navigate(params){
       this.props.navigation.navigate(params, params)
     }
 
     render(){
       return(
         <View style={styles.container}>
-          <TouchableHighlight style={styles.button} onPress={() => { this.createJob('JobForm')} }>
+          <TouchableHighlight 
+            style={styles.button} 
+            onPress={() => { this.navigate('JobForm')} }
+            underlayColor='#78ac05' >
             <Text style={styles.btnText}>Create new Job</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.button} onPress={()=> { this.jobsList('JobList') } }>
+          <TouchableHighlight 
+            style={styles.button} 
+            onPress={()=> { this.navigate('JobList') } }
+            underlayColor='#78ac05' >
             <Text style={styles.btnText}>Existing Jobs</Text>
           </TouchableHighlight>
         </View>

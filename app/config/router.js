@@ -10,5 +10,5 @@ export const Nav = StackNavigator({
   Home: {screen: Home, navigationOptions: { title: 'Home' } },
   JobList: { screen: JobList, navigationOptions: {title: 'Jobs'} },
   JobTable: { screen: JobTable, navigationOptions: { title: 'Sample Data'} },
-  JobForm: { screen: JobForm, navigationOptions: { title: 'Job Form'} }
+  JobForm: { screen: JobForm, navigationOptions: { title: 'Job Form'} },
 });
