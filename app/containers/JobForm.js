@@ -74,21 +74,7 @@ class JobForm extends React.Component{
     }
   }
 
-  handleFormChange(formData){
-    formData = {
-      job_id: this.state.formData.job_id, 
-      client: this.state.formData.client, 
-      address_1: this.state.formData.address_1,
-      address_2: this.state.formData.address_2,
-      city: this.state.formData.city,
-      state: this.state.formData.state,
-      zipcode: Number(this.state.formData.zipcode),
-      date: new Date(),
-      time: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-  
+  handleFormChange(formData){  
     this.setState({formData:formData})
     this.props.onFormChange && this.props.onFormChange(formData);
   }
