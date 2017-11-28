@@ -78,7 +78,7 @@ class JobForm extends React.Component{
     formData = {
       job_id: this.state.formData.job_id || '', 
       uploaded: false, 
-      company: this.state.formData.company || '', 
+      client: this.state.formData.client || '', 
       address_1: this.state.formData.address_1 || '',
       address_2: this.state.formData.address_2 || '',
       city: this.state.formData.city || '',
