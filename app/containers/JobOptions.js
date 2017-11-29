@@ -16,22 +16,34 @@ const {
 
     }
 
-    navigate(params){
-      this.props.navigation.navigate(params, params)
+    navigate(location, params){
+      this.props.navigation.navigate(location, params)
     }
 
     render(){
+      
+      const job = {
+        job_id: this.props.navigation.state.params.job_id,
+        client: this.props.navigation.state.params.client,
+        address_1: this.props.navigation.state.params.address_1,
+        address_2: this.props.navigation.state.params.address_2,
+        city: this.props.navigation.state.params.city,
+        state: this.props.navigation.state.params.state,
+        zipcode: this.props.navigation.state.params.zipcode,
+        date: this.props.navigation.state.params.date        
+      } 
+
       return(
         <View style={styles.container}>
           <TouchableHighlight 
             style={styles.button} 
-            onPress={() => { this.navigate('JobForm')} }
+            onPress={() => { this.navigate('JobForm', job)} }
             underlayColor='#78ac05' >
             <Text style={styles.btnText}>Update Job</Text>
           </TouchableHighlight>
           <TouchableHighlight 
             style={styles.button} 
-            onPress={()=> { this.navigate('JobTable') } }
+            onPress={()=> { this.navigate('JobTable', job) } }
             underlayColor='#78ac05' >
             <Text style={styles.btnText}>Add Sample</Text>
           </TouchableHighlight>

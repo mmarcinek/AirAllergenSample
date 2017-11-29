@@ -15,17 +15,21 @@ const {
   Modal
 } = ReactNative
 
-import { Form,
-  Separator, InputField, LinkField,
-  SwitchField, PickerField, DatePickerField, TimePickerField
+import { 
+  Form,
+  Separator, 
+  InputField, 
+  LinkField,
+  SwitchField, 
+  PickerField, 
+  DatePickerField, 
+  TimePickerField
 } from 'react-native-form-generator';
 
 class JobList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    }
     this.getJobList();
   }
 

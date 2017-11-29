@@ -70,7 +70,16 @@ class JobForm extends React.Component{
     super(props);
 
     this.state = {
-      formData: {}
+      formData: {
+        job_id: this.props.navigation.state.params.job_id || '',
+        client: this.props.navigation.state.params.client || '',
+        address_1: this.props.navigation.state.params.address_1 || '',
+        address_2: this.props.navigation.state.params.address_2 || '',
+        city: this.props.navigation.state.params.city || '',
+        state: this.props.navigation.state.params.state || '',
+        zipcode: String(this.props.navigation.state.params.zipcode) || '',
+        date: this.props.navigation.state.params.date || new Date()
+      }
     }
   }
 
