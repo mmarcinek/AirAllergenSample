@@ -129,7 +129,7 @@ class JobForm extends React.Component{
           <Separator />
             <InputField
               ref='job_id'
-              value='Job Id'
+              value={this.state.formData.job_id}
               placeholder='Job Id'
               helpText={((self)=>{
                 if(Object.keys(self.refs).length !== 0){
@@ -148,39 +148,39 @@ class JobForm extends React.Component{
             />
             <InputField
             ref='client'
-            value='Client Name'
+            value={this.state.formData.client}
             placeholder='Client'
             />
           <Separator />  
             <Text>Address</Text>
             <InputField
               ref='address_1'
-              value='Address 1'
+              value={this.state.formData.address_1}
               placeholder='Address 1'
               />
             <InputField
               ref='address_2'
-              value='Address 2'
+              value={this.state.formData.address_2}
               placeholder='Address 2'
             />
             <InputField
               ref='city'
-              value='City'
+              value={this.state.formData.city}
               placeholder='City'
             />
             <InputField
               ref='state'
-              value='State'
+              value={this.state.formData.state}
               placeholder='State'
             />
             <InputField
               ref='zipcode'
-              value='Zipcode'
+              value={this.state.formData.zipcode}
               placeholder='Zipcode'
             />
           <Separator />
             <DatePickerField 
-              ref='date'
+              ref={this.state.formData.date}
               minimumDate={new Date('1/1/2000')}
               maximumDate={new Date()}
               iconRight={[<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-arrow-forward' size={30} />,
@@ -188,7 +188,7 @@ class JobForm extends React.Component{
                         ]}
               placeholder='Day'/>
         </Form>
-        <View style={{ flexDirection:'row'}}>
+        <View style={{ flexDirection:'row', marginTop: 70}}>
           <TouchableHighlight 
             style={{
               backgroundColor:'#f45942',
