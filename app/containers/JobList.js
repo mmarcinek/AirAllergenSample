@@ -80,7 +80,7 @@ class JobList extends Component {
   }
 
   jobSelect(job){
-    this.props.navigation.navigate('JobTable', job)
+    this.props.navigation.navigate('JobOptions', job)
   }
 
   render(){ 
