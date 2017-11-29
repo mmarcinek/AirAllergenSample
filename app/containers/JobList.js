@@ -35,7 +35,15 @@ class JobList extends Component {
     if (this.jobResults.length ) {
       this.jobList = this.jobResults.map((job) => {
         return(
-          <View key={job.job_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
+          <View 
+            key={job.job_id} 
+            style={{
+              flexDirection: 'row', 
+              paddingTop: 20, 
+              paddingLeft:20, 
+              borderBottomColor: '#d3d3d3', 
+              borderBottomWidth: 1, 
+            }}>
             <TouchableHighlight 
               onPress={() => { this.jobSelect(job) }} >
               <View style={{flexDirection: 'row' } }>
@@ -43,12 +51,20 @@ class JobList extends Component {
                 <Text style={{width: 150, height: 40}}>{job.client}</Text>
               </View>
             </TouchableHighlight>
-            {/* <TouchableHighlight
-              style={{width: 75, height: 40}} 
+            <TouchableHighlight
+              style={{
+                width: 75, 
+                height: 40,
+                paddingLeft: 10,
+                borderLeftColor:'#d3d3d3',
+                borderLeftWidth: 1 
+              }} 
               onPress={() => {this.uploadJob(job)}}              
             >
-              <Text>Upload</Text>
-            </TouchableHighlight> */}
+              <View style={{marginTop: -5 }}>
+                <Icon name="cloud-upload" />
+              </View>
+            </TouchableHighlight>
           </View>
         )
       })
@@ -56,7 +72,7 @@ class JobList extends Component {
   }
 
   uploadJob(job){
-    alert(job);
+    alert('Uploading job_id: ' + job.job_id);
   }
   
   componentDidMount() {
