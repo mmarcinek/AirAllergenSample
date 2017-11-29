@@ -8,7 +8,7 @@ import JobForm from '../containers/JobForm';
   
 export const Nav = StackNavigator({
   Home: {screen: Home, navigationOptions: { title: 'Home' } },
-  JobList: { screen: JobList, navigationOptions: {title: 'Jobs'} },
+  JobList: { screen: JobList, navigationOptions: {title: 'Active Jobs'} },
   JobTable: { screen: JobTable, navigationOptions: { title: 'Sample Data'} },
   JobForm: { screen: JobForm, navigationOptions: { title: 'Job Form'} },
 });

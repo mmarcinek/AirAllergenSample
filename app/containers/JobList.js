@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import realm from '../store/realm';
-import { Button } from 'react-native-material-design';
+import { Icon } from 'react-native-material-design';
 import Orientation from 'react-native-orientation';
 
 
@@ -35,16 +35,28 @@ class JobList extends Component {
     if (this.jobResults.length ) {
       this.jobList = this.jobResults.map((job) => {
         return(
-          <View onPress={() => this.jobSelect(job)} key={job.job_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
-            <TouchableHighlight style={{width: 75, height: 40}} onPress={() => { this.jobSelect(job) }}>
-              <Text>Select</Text>
+          <View key={job.job_id} style={{flexDirection: 'row', paddingTop: 20, paddingLeft:20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
+            <TouchableHighlight 
+              onPress={() => { this.jobSelect(job) }} >
+              <View style={{flexDirection: 'row' } }>
+                <Text style={{width: 150, height: 40}}>{job.job_id}</Text>
+                <Text style={{width: 150, height: 40}}>{job.client}</Text>
+              </View>
             </TouchableHighlight>
-            <Text style={{width: 150, height: 40}}>{job.job_id}</Text>
-            <Text style={{width: 150, height: 40}}>{job.client}</Text>
+            {/* <TouchableHighlight
+              style={{width: 75, height: 40}} 
+              onPress={() => {this.uploadJob(job)}}              
+            >
+              <Text>Upload</Text>
+            </TouchableHighlight> */}
           </View>
         )
       })
     }
+  }
+
+  uploadJob(job){
+    alert(job);
   }
   
   componentDidMount() {
@@ -60,9 +72,9 @@ class JobList extends Component {
       <View style={styles.container}>
         <ScrollView>
         <View style={{flexDirection: 'row', paddingLeft: 20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
-          <Text style={{width: 75, height: 40}}></Text>
           <Text style={{width: 150, height: 40}}>Job ID</Text>
           <Text style={{width: 150, height: 40}}>Client</Text>
+          <Text style={{width: 75, height: 40}}></Text>          
         </View> 
         <View>
           {this.jobList}
