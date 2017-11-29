@@ -98,10 +98,9 @@ class JobForm extends React.Component{
         city: this.state.formData.city || '',
         state: this.state.formData.state || '',
         zipcode: Number(this.state.formData.zipcode) || 11111,
-        date: new Date(),
-        time: new Date(),
+        date: this.state.formData.date || new Date(),
         createdAt: new Date(),
-        updatedAt: this.state.formData.time
+        updatedAt: new Date()
       })
     });
 

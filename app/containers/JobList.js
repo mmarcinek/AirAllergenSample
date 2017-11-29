@@ -48,9 +48,9 @@ class JobList extends Component {
   }
   
   componentDidMount() {
-    // Orientation.lockToPortrait(); 
-    // Orientation.addOrientationListener(this._orientationDidChange);
+    // Nothing here for now
   }
+
   jobSelect(job){
     this.props.navigation.navigate('JobTable', job)
   }
@@ -62,7 +62,7 @@ class JobList extends Component {
         <View style={{flexDirection: 'row', paddingLeft: 20, borderBottomColor: '#d3d3d3', borderBottomWidth: 1}}>
           <Text style={{width: 75, height: 40}}></Text>
           <Text style={{width: 150, height: 40}}>Job ID</Text>
-          <Text style={{width: 150, height: 40}}>Company</Text>
+          <Text style={{width: 150, height: 40}}>Client</Text>
         </View> 
         <View>
           {this.jobList}
