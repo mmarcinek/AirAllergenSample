@@ -28,10 +28,14 @@ class Sample extends Realm.Object {}
       location: {type: 'string'},
       test_type: {type: 'string'},
       volume: {type: 'int'},
+      volume_unit: {type: 'string'},
       area: {type: 'int' },
+      area_unit: {type: 'string'},
       TAT: {type: 'int'},
+      time_unit: {type: 'string'},
       RH: {type: 'float' },
       temp: {type: 'float' },
+      temp_unit: {type: 'string'},
       notes: {type: 'string'}
     } 
   }

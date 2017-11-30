@@ -32,7 +32,6 @@ class JobTable extends Component {
   }
 
   getSampleList(){
-    alert(this.props.navigation.state.params.job_id)
     let allSamples = realm.objects('Sample')
     let tableData = allSamples.filtered(`table_id = "${this.props.navigation.state.params.job_id}"`)
     this.jobDetails = Array.from(tableData)
@@ -104,7 +103,7 @@ class JobTable extends Component {
   render() {
     const job = {
       job_id: this.props.navigation.state.params.job_id,
-      client: this.props.navigation.state.params.client,
+      company: this.props.navigation.state.params.company,
       address_1: this.props.navigation.state.params.address_1,
       address_2: this.props.navigation.state.params.address_2,
       city: this.props.navigation.state.params.city,
