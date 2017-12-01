@@ -65,8 +65,8 @@ class JobTable extends Component {
 
   }
 
-  editSample(){
-
+  editSample(sample){
+    this.props.navigation.navigate('SampleEdit', sample)
   }
 
   render() {
