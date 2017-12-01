@@ -103,6 +103,7 @@ class SampleForm extends React.Component{
   }
 
   saveJob() {
+
     realm.write(() => {
       realm.create('Sample', {
         table_id: this.props.navigation.state.params.job_id,

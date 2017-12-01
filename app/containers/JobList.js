@@ -49,8 +49,16 @@ class JobList extends Component {
             <TouchableHighlight 
               onPress={() => { this.jobSelect(job) }} >
               <View style={{flexDirection: 'row' } }>
-                <Text style={{width: 150, height: 40}}>{job.job_id}</Text>
-                <Text style={{width: 150, height: 40}}>{job.client}</Text>
+                <Text style={{
+                  width: 150, 
+                  height: 40
+                  }}>{job.job_id}
+                </Text>
+                <Text style={{
+                  width: 150, 
+                  height: 40
+                  }}>{job.client}
+                </Text>
               </View>
             </TouchableHighlight>
             <TouchableHighlight
