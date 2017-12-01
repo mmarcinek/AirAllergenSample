@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ReactNative from 'react-native';
 import realm from '../store/realm';
 import { Icon } from 'react-native-material-design';
-import Orientation from 'react-native-orientation';
-
 
 const {
   ScrollView,
