@@ -2,8 +2,7 @@ import React from 'react';
 import ReactNative from 'react-native';
 import realm from '../store/realm';
 import Icon from 'react-native-vector-icons/Ionicons';
-this.locationOptions = require('../options/location')
-// import locationOptions from '../options/location';
+import LocationPicker from '../options/Location'
 
 const {
   AppRegistry,
@@ -105,7 +104,6 @@ class SampleForm extends React.Component{
   }
 
   saveJob() {
-
     realm.write(() => {
       realm.create('Sample', {
         table_id: this.props.navigation.state.params.job_id,
@@ -171,15 +169,7 @@ class SampleForm extends React.Component{
                 return true;
               }]}
             />
-           <PickerField ref='location'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}              
-              label='Location'
-              value=''
-              options={this.locationOptions}
-            />      
+            <LocationPicker/>
             <InputField
               ref='test_type'
               value={this.state.formData.test_type}
