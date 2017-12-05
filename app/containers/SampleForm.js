@@ -2,7 +2,6 @@ import React from 'react';
 import ReactNative from 'react-native';
 import realm from '../store/realm';
 import Icon from 'react-native-vector-icons/Ionicons';
-import LocationPicker from '../options/Location'
 
 const {
   AppRegistry,
@@ -22,6 +21,9 @@ import {
   TimePickerField,
   PickerField
 } from 'react-native-form-generator';
+
+import LocationPicker from '../options/Location';
+
 
 class CustomModal extends React.Component{
   handleClose(){
