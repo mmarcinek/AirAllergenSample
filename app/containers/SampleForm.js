@@ -23,6 +23,8 @@ import {
 } from 'react-native-form-generator';
 
 import LocationPicker from '../options/Location';
+import AreaPicker from '../options/Area';
+import SampleForPicker from '../options/SampleFor';
 
 
 class CustomModal extends React.Component{
@@ -79,9 +81,7 @@ class SampleForm extends React.Component{
         location: this.props.navigation.state.params.location || '',
         test_type: this.props.navigation.state.params.test_type || '',
         volume: this.props.navigation.state.params.volume || '',
-        volume_unit: this.props.navigation.state.volume_unit || '',
-        area: this.props.navigation.state.params.area || '',
-        area_unit: this.props.navigation.state.area_unit || '',
+        measure: this.props.navigation.state.measure || '',
         TAT: this.props.navigation.state.params.TAT || '',
         time_unit: this.props.navigation.state.time_unit || '',
         RH: this.props.navigation.state.params.RH || '',
@@ -113,9 +113,7 @@ class SampleForm extends React.Component{
         location: this.state.formData.location || '',
         test_type: this.state.formData.test_type || '',
         volume: Number(this.state.formData.volume) || 0,
-        volume_unit: this.state.formData.volume_unit || '',
-        area: Number(this.state.formData.area) || 0,
-        area_unit: this.state.formData.area_unit || '',
+        measure: this.state.formData.measure || '',
         TAT: Number(this.state.formData.TAT) || 0,
         time_unit: this.state.formData.time_unit || '',
         RH: Number(this.state.formData.RH) || 0.0,
@@ -133,9 +131,7 @@ class SampleForm extends React.Component{
     this.refs.sampleForm.refs.location.setValue("");
     this.refs.sampleForm.refs.test_type.setValue("");
     this.refs.sampleForm.refs.volume.setValue("");
-    this.refs.sampleForm.refs.volume_unit.setValue("");
-    this.refs.sampleForm.refs.area.setValue("");  
-    this.refs.sampleForm.refs.area_unit.setValue("");
+    this.refs.sampleForm.refs.measure.setValue("");
     this.refs.sampleForm.refs.TAT.setValue("");
     this.refs.sampleForm.refs.time_unit.setValue("");
     this.refs.sampleForm.refs.RH.setValue("");    
@@ -172,11 +168,7 @@ class SampleForm extends React.Component{
               }]}
             />
             <LocationPicker/>
-            <InputField
-              ref='test_type'
-              value={this.state.formData.test_type}
-              placeholder='Test Type'
-            />       
+            <SampleForPicker />       
             <InputField
               style={{
                 width: 50 + '%', 
@@ -185,42 +177,8 @@ class SampleForm extends React.Component{
               ref='volume'
               value={this.state.formData.volume}
               placeholder='Volume'
-            />
-            <PickerField ref='volume_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}              
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                minute: 'liters per minute',
-                hours: 'liters per hour'
-              }}
-            />      
-            <InputField
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}              
-              ref='area'
-              value={this.state.formData.area}
-              placeholder='Area'
-            />
-            <PickerField ref='area_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}              
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                feet: 'Square Feet',
-                meters: 'Square Meters'
-              }}
-            />
+            />  
+            <AreaPicker />
             <InputField
               style={{
                 width: 50 + '%', 

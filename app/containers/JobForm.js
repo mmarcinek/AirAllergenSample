@@ -21,6 +21,8 @@ import {
   TimePickerField
 } from 'react-native-form-generator';
 
+import StatePicker from '../options/States';
+
 class CustomModal extends React.Component{
   handleClose(){
     this.props.onHidePicker && this.props.onHidePicker();
@@ -177,10 +179,7 @@ class JobForm extends React.Component{
               value={this.state.formData.city}
               placeholder='City'
             />
-            <InputField
-              ref='state'
-              value={this.state.formData.state}
-              placeholder='State'
+            <StatePicker 
             />
             <InputField
               ref='zipcode'
