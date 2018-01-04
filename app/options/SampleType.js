@@ -8,7 +8,7 @@ import {
   PickerField
 } from 'react-native-form-generator';
 
-class SampleForPicker extends React.Component {
+class SampleTypePicker extends React.Component {
   constructor(props){
     super(props)
     
@@ -19,13 +19,13 @@ class SampleForPicker extends React.Component {
   
   render(){
     return <PickerField 
-    ref='sample_for'
+    ref='sample_type'
     value={this.state.formData.state}
     style={{
       width: 50 + '%', 
       alignItems:'center'
     }}              
-    label='Location'
+    label='Sample Type'
     options = {{
         8: 'Micro 5',
         9: 'Zefon Air-O-Cell',
@@ -56,4 +56,4 @@ class SampleForPicker extends React.Component {
   }
 }
 
-export default SampleForPicker;
+export default SampleTypePicker;

@@ -23,9 +23,10 @@ import {
 } from 'react-native-form-generator';
 
 import LocationPicker from '../options/Location';
-import AreaPicker from '../options/Area';
+import SampleTypePicker from '../options/SampleType'
 import SampleForPicker from '../options/SampleFor';
-
+import MeasurePicker from '../options/Measure';
+import AnalysisPicker from '../options/AnalysisPicker';
 
 class CustomModal extends React.Component{
   handleClose(){
@@ -127,16 +128,15 @@ class SampleForm extends React.Component{
   }
 
   resetForm(){
-    this.refs.sampleForm.refs.sample_id.setValue("");
     this.refs.sampleForm.refs.location.setValue("");
-    this.refs.sampleForm.refs.test_type.setValue("");
+    this.refs.sampleForm.refs.sample_id.setValue("");    
+    this.refs.sampleForm.refs.sample_type.setValue("");
+    this.refs.sampleForm.refs.sample_for.setValue("");
+    this.refs.sampleForm.refs.analysis_req.setValue("");
     this.refs.sampleForm.refs.volume.setValue("");
     this.refs.sampleForm.refs.measure.setValue("");
-    this.refs.sampleForm.refs.TAT.setValue("");
-    this.refs.sampleForm.refs.time_unit.setValue("");
     this.refs.sampleForm.refs.RH.setValue("");    
     this.refs.sampleForm.refs.temp.setValue("");
-    this.refs.sampleForm.refs.temp_unit.setValue("");
     this.refs.sampleForm.refs.notes.setValue("");
   }
 
@@ -148,6 +148,7 @@ class SampleForm extends React.Component{
           onFocus={this.handleFormFocus.bind(this)}
           onChange={this.handleFormChange.bind(this)}
           label="Sample Information">
+            <LocationPicker/>          
             <InputField
               ref='sample_id'
               value={this.state.formData.sample_id}
@@ -159,16 +160,15 @@ class SampleForm extends React.Component{
                   }
 
                 }
-                // if(!!(self.refs && self.refs.first_name.valid)){
-                // }
               })(this)}
               validationFunction={[(value)=>{
                 if(value == '') return "A sample id is required";
                 return true;
               }]}
             />
-            <LocationPicker/>
-            <SampleForPicker />       
+            <SampleTypePicker />
+            <SampleForPicker />      
+            <AnalysisPicker />             
             <InputField
               style={{
                 width: 50 + '%', 
@@ -178,29 +178,7 @@ class SampleForm extends React.Component{
               value={this.state.formData.volume}
               placeholder='Volume'
             />  
-            <AreaPicker />
-            <InputField
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}
-              ref='TAT'
-              value={this.state.formData.TAT}
-              placeholder='TAT'
-            />
-            <PickerField ref='time_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                minutes: 'Minutes',
-                hours: 'Hours'
-              }}
-            />      
+            <MeasurePicker />
             <InputField
               ref='RH'
               value={this.state.formData.RH}
@@ -214,19 +192,6 @@ class SampleForm extends React.Component{
               ref='temp'
               value={this.state.formData.temp}
               placeholder='temp'
-            />
-            <PickerField ref='temp_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                celcius: 'Celcius',
-                farenheit: 'Farenheit'
-              }}
             />
             <InputField
               multiline={true}

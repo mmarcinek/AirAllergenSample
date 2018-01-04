@@ -8,7 +8,7 @@ import {
   PickerField
 } from 'react-native-form-generator';
 
-class MeasurePicker extends React.Component {
+class AnalysisPicker extends React.Component {
   constructor(props){
     super(props)
     
@@ -19,29 +19,30 @@ class MeasurePicker extends React.Component {
   
   render(){
     return <PickerField 
-    ref='measure'
+    ref='analysis_req'
     value={this.state.formData.state}
     style={{
       width: 50 + '%', 
       alignItems:'center'
     }}              
-    label='Measure'
+    label='Analysis Req'
     options = {{
-        0 : ' ',
-        1: 'L',
-        2: 'in2',
-        3: 'ft2',
-        4: 'cm2',
-        5: 'm2',
-        6: 'm3',
-        7: 'g',
-        8: 'mL',
-        9: 'swab',
-        10: 'plate'
+        1: 'Spore Trap 1',
+        2: 'Direct 2',
+        3: 'Culture	3',
+        4: 'Sewage Screen 4',
+        5: 'Colilert 5',
+        6: 'Dust Mite 5',
+        7: 'PLM	5',
+        8: 'Point Count	5',
+        9: 'TEM	5',
+        10: 'TO-15	5',	
+        11: 'Respirable	5',
+        12: 'Other 5'
       }
     }
   />      
   }
 }
 
-export default MeasurePicker;
+export default AnalysisPicker;

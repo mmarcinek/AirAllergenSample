@@ -25,7 +25,7 @@ class SampleForPicker extends React.Component {
       width: 50 + '%', 
       alignItems:'center'
     }}              
-    label='Location'
+    label='Sample For'
     options = {{
         1: 'Spore Trap 1',
         2: 'Direct 2',	
