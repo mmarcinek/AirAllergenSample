@@ -146,7 +146,7 @@ class SampleForm extends React.Component{
           onFocus={this.handleFormFocus.bind(this)}
           onChange={this.handleFormChange.bind(this)}
           label="Sample Information">
-            <LocationPicker/>          
+            <LocationPicker ref='location'/>          
             <InputField
               ref='sample_id'
               value={this.state.formData.sample_id}

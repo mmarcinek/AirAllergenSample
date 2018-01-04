@@ -42,7 +42,7 @@ class JobTable extends Component {
             </Text>
             <Text style={{
               width: 75, 
-              height: 40}}>{detail.test_type}
+              height: 40}}>{detail.sample_type}
             </Text>
             <TouchableHighlight
               style={{
