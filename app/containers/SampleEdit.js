@@ -22,6 +22,12 @@ import {
   PickerField
 } from 'react-native-form-generator';
 
+import LocationPicker from '../options/Location';
+import SampleTypePicker from '../options/SampleType'
+import SampleForPicker from '../options/SampleFor';
+import MeasurePicker from '../options/Measure';
+import AnalysisPicker from '../options/AnalysisReq';
+
 class CustomModal extends React.Component{
   handleClose(){
     this.props.onHidePicker && this.props.onHidePicker();
@@ -66,38 +72,24 @@ class WrappedIcon extends React.Component {
   }
 }
 
-class SampleForm extends React.Component{
+class SampleEdit extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
-      formData: {}
+      formData: {
+        location: this.props.navigation.state.params.location || '',
+        sample_id: this.props.navigation.state.params.sample_id || '',
+        sample_type: this.props.navigation.state.params.sample_type || '',
+        sample_for: this.props.navigation.state.params.sample_for || '',
+        analysis_req: this.props.navigation.state.params.analysis_req || '',    
+        volume: this.props.navigation.state.params.volume || '',
+        measure: this.props.navigation.state.measure || '',
+        RH: this.props.navigation.state.params.RH || '',
+        temp: this.props.navigation.state.params.temp || '',
+        notes: this.props.navigation.state.params.notes || ''
+      }
     }
-  }
-
-  setFormState(){
-    let samples = realm.objects('Sample')
-    let sampleData = samples.filtered(`sample_id = "${this.props.navigation.state.params.sample_id}"`)
-    this.sampleDetails = Array.from(sampleData)
-
-    sample = {
-      sample_id: this.sampleDetails.sample_id,
-      location: this.sampleDetails.location,
-      test_type: this.sampleDetails.test_type,
-      volume: this.sampleDetails.volume,
-      volume_unit: this.sampleDetails.volume_unit,
-      area: this.sampleDetails.area,
-      area_unit: this.sampleDetails.area_unit,
-      TAT: this.sampleDetails.TAT,
-      time_unit: this.sampleDetails.time_unit,
-      RH: this.sampleDetails.RH,
-      temp: this.sampleDetails.temp,
-      temp_unit: this.sampleDetails.temp_unit,
-      notes: this.sampleDetails.notes
-    }
-
-    this.setState({formData:sample});
-    this.props.onFormChange && this.props.onFormChange(formData);    
   }
 
   handleFormChange(formData){  
@@ -114,22 +106,18 @@ class SampleForm extends React.Component{
   }
 
   saveJob() {
-
     realm.write(() => {
       realm.create('Sample', {
         table_id: this.props.navigation.state.params.job_id,
-        sample_id: this.state.formData.sample_id,
         location: this.state.formData.location || '',
-        test_type: this.state.formData.test_type || '',
+        sample_id: this.state.formData.sample_id,        
+        sample_type: this.state.formData.sample_type || '',
+        sample_for: this.state.formData.sample_for || '',
+        analysis_req: this.state.formData.analysis_req || '',        
         volume: Number(this.state.formData.volume) || 0,
-        volume_unit: this.state.formData.volume_unit || '',
-        area: Number(this.state.formData.area) || 0,
-        area_unit: this.state.formData.area_unit || '',
-        TAT: Number(this.state.formData.TAT) || 0,
-        time_unit: this.state.formData.time_unit || '',
+        measure: this.state.formData.measure || '',
         RH: Number(this.state.formData.RH) || 0.0,
         temp: Number(this.state.formData.temp) || 0.0,
-        temp_unit: this.state.formData.temp_unit || '',
         notes: this.state.formData.notes || ''
       })
     });
@@ -138,18 +126,15 @@ class SampleForm extends React.Component{
   }
 
   resetForm(){
-    this.refs.sampleForm.refs.sample_id.setValue("");
     this.refs.sampleForm.refs.location.setValue("");
-    this.refs.sampleForm.refs.test_type.setValue("");
+    this.refs.sampleForm.refs.sample_id.setValue("");    
+    this.refs.sampleForm.refs.sample_type.setValue("");
+    this.refs.sampleForm.refs.sample_for.setValue("");
+    this.refs.sampleForm.refs.analysis_req.setValue("");
     this.refs.sampleForm.refs.volume.setValue("");
-    this.refs.sampleForm.refs.volume_unit.setValue("");
-    this.refs.sampleForm.refs.area.setValue("");  
-    this.refs.sampleForm.refs.area_unit.setValue("");
-    this.refs.sampleForm.refs.TAT.setValue("");
-    this.refs.sampleForm.refs.time_unit.setValue("");
+    this.refs.sampleForm.refs.measure.setValue("");
     this.refs.sampleForm.refs.RH.setValue("");    
     this.refs.sampleForm.refs.temp.setValue("");
-    this.refs.sampleForm.refs.temp_unit.setValue("");
     this.refs.sampleForm.refs.notes.setValue("");
   }
 
@@ -161,6 +146,7 @@ class SampleForm extends React.Component{
           onFocus={this.handleFormFocus.bind(this)}
           onChange={this.handleFormChange.bind(this)}
           label="Sample Information">
+            <LocationPicker/>          
             <InputField
               ref='sample_id'
               value={this.state.formData.sample_id}
@@ -170,26 +156,16 @@ class SampleForm extends React.Component{
                   if(!self.refs.sampleForm.refs.sample_id.valid){
                     return self.refs.sampleForm.refs.sample_id.validationErrors.join("\n");
                   }
-
                 }
-                // if(!!(self.refs && self.refs.first_name.valid)){
-                // }
               })(this)}
               validationFunction={[(value)=>{
                 if(value == '') return "A sample id is required";
                 return true;
               }]}
             />
-            <InputField
-            ref='location'
-            value={this.state.formData.location}
-            placeholder='Location'
-            />
-            <InputField
-              ref='test_type'
-              value={this.state.formData.test_type}
-              placeholder='Test Type'
-            />       
+            <SampleTypePicker />
+            <SampleForPicker />      
+            <AnalysisPicker />             
             <InputField
               style={{
                 width: 50 + '%', 
@@ -198,64 +174,8 @@ class SampleForm extends React.Component{
               ref='volume'
               value={this.state.formData.volume}
               placeholder='Volume'
-            />
-            <PickerField ref='volume_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}              
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                minute: 'liters per minute',
-                hours: 'liters per hour'
-              }}
-            />      
-            <InputField
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}              
-              ref='area'
-              value={this.state.formData.area}
-              placeholder='Area'
-            />
-            <PickerField ref='area_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}              
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                feet: 'Square Feet',
-                meters: 'Square Meters'
-              }}
-            />
-            <InputField
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}
-              ref='TAT'
-              value={this.state.formData.TAT}
-              placeholder='TAT'
-            />
-            <PickerField ref='time_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                minutes: 'Minutes',
-                hours: 'Hours'
-              }}
-            />      
+            />  
+            <MeasurePicker />
             <InputField
               ref='RH'
               value={this.state.formData.RH}
@@ -269,19 +189,6 @@ class SampleForm extends React.Component{
               ref='temp'
               value={this.state.formData.temp}
               placeholder='temp'
-            />
-            <PickerField ref='temp_unit'
-              style={{
-                width: 50 + '%', 
-                alignItems:'center'
-              }}
-              label='Unit of Measure'
-              value=''
-              options={{
-                "": '',
-                celcius: 'Celcius',
-                farenheit: 'Farenheit'
-              }}
             />
             <InputField
               multiline={true}
@@ -320,4 +227,4 @@ class SampleForm extends React.Component{
       </ScrollView>);
     }
   }
-export default SampleForm;
+export default SampleEdit;
