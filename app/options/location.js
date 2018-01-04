@@ -23,7 +23,6 @@ class LocationPicker extends React.Component {
     label='Location'
     value=" "
     options = {{
-      0: " ",
       1: "Attic",
       2: "Basement",
       3: "Basement (Theater Rm)",

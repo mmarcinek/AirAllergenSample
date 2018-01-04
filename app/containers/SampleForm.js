@@ -26,7 +26,7 @@ import LocationPicker from '../options/Location';
 import SampleTypePicker from '../options/SampleType'
 import SampleForPicker from '../options/SampleFor';
 import MeasurePicker from '../options/Measure';
-import AnalysisPicker from '../options/AnalysisPicker';
+import AnalysisPicker from '../options/AnalysisReq';
 
 class CustomModal extends React.Component{
   handleClose(){
@@ -78,16 +78,15 @@ class SampleForm extends React.Component{
 
     this.state = {
       formData: {
-        sample_id: this.props.navigation.state.params.sample_id || '',
         location: this.props.navigation.state.params.location || '',
-        test_type: this.props.navigation.state.params.test_type || '',
+        sample_id: this.props.navigation.state.params.sample_id || '',
+        sample_type: this.props.navigation.state.params.sample_type || '',
+        sample_for: this.props.navigation.state.params.sample_for || '',
+        analysis_req: this.props.navigation.state.params.analysis_req || '',    
         volume: this.props.navigation.state.params.volume || '',
         measure: this.props.navigation.state.measure || '',
-        TAT: this.props.navigation.state.params.TAT || '',
-        time_unit: this.props.navigation.state.time_unit || '',
         RH: this.props.navigation.state.params.RH || '',
         temp: this.props.navigation.state.params.temp || '',
-        temp_unit: this.props.navigation.state.temp_unit || '',
         notes: this.props.navigation.state.params.notes || ''
       }
     }
@@ -110,16 +109,15 @@ class SampleForm extends React.Component{
     realm.write(() => {
       realm.create('Sample', {
         table_id: this.props.navigation.state.params.job_id,
-        sample_id: this.state.formData.sample_id,
         location: this.state.formData.location || '',
-        test_type: this.state.formData.test_type || '',
+        sample_id: this.state.formData.sample_id,        
+        sample_type: this.state.formData.sample_type || '',
+        sample_for: this.state.formData.sample_for || '',
+        analysis_req: this.state.formData.analysis_req || '',        
         volume: Number(this.state.formData.volume) || 0,
         measure: this.state.formData.measure || '',
-        TAT: Number(this.state.formData.TAT) || 0,
-        time_unit: this.state.formData.time_unit || '',
         RH: Number(this.state.formData.RH) || 0.0,
         temp: Number(this.state.formData.temp) || 0.0,
-        temp_unit: this.state.formData.temp_unit || '',
         notes: this.state.formData.notes || ''
       })
     });
@@ -158,7 +156,6 @@ class SampleForm extends React.Component{
                   if(!self.refs.sampleForm.refs.sample_id.valid){
                     return self.refs.sampleForm.refs.sample_id.validationErrors.join("\n");
                   }
-
                 }
               })(this)}
               validationFunction={[(value)=>{

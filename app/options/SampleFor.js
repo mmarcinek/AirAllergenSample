@@ -27,18 +27,15 @@ class SampleForPicker extends React.Component {
     }}              
     label='Sample For'
     options = {{
-        1: 'Spore Trap 1',
-        2: 'Direct 2',	
-        3: 'Culture	3',
-        4: 'Sewage Screen 4',
-        5: 'Colilert 5',	
-        6: 'Dust Mite	5',	
-        7: 'PLM	5',
-        8: 'Point Count	5',
-        9: 'TEM	5',
-        10: 'TO-15 5',
-        11: 'Respirable	5',
-        12: 'Other 5'
+      1: 'Mold',
+      2: 'Bacteria',
+      3: 'Coliforms',
+      4: 'Allergens',
+      5: 'Asbestos',
+      6: 'Particulate',
+      7: "VOC's",
+      8: 'Other',
+      9: 'E. coli',
       }
     }
   />      
