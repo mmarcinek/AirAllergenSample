@@ -109,16 +109,16 @@ class SampleForm extends React.Component{
     realm.write(() => {
       realm.create('Sample', {
         table_id: this.props.navigation.state.params.job_id,
-        location: this.state.formData.location || '',
+        location: this.state.formData.location,
         sample_id: this.state.formData.sample_id,        
-        sample_type: this.state.formData.sample_type || '',
-        sample_for: this.state.formData.sample_for || '',
-        analysis_req: this.state.formData.analysis_req || '',        
-        volume: Number(this.state.formData.volume) || 0,
-        measure: this.state.formData.measure || '',
-        RH: Number(this.state.formData.RH) || 0.0,
-        temp: Number(this.state.formData.temp) || 0.0,
-        notes: this.state.formData.notes || ''
+        sample_type: this.state.formData.sample_type,
+        sample_for: this.state.formData.sample_for,
+        analysis_req: this.state.formData.analysis_req,        
+        volume: Number(this.state.formData.volume),
+        measure: this.state.formData.measure,
+        RH: Number(this.state.formData.RH),
+        temp: Number(this.state.formData.temp),
+        notes: this.state.formData.notes
       })
     });
 
