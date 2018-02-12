@@ -114,11 +114,11 @@ class SampleForm extends React.Component{
         sample_type: this.state.formData.sample_type,
         sample_for: this.state.formData.sample_for,
         analysis_req: this.state.formData.analysis_req,        
-        volume: Number(this.state.formData.volume),
+        volume: Number(this.state.formData.volume) || 0,
         measure: this.state.formData.measure,
-        RH: Number(this.state.formData.RH),
-        temp: Number(this.state.formData.temp),
-        notes: this.state.formData.notes
+        RH: Number(this.state.formData.RH) || 0,
+        temp: Number(this.state.formData.temp) || 0,
+        notes: this.state.formData.notes || ''
       })
     });
 
