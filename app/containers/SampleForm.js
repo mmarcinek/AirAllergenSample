@@ -146,7 +146,97 @@ class SampleForm extends React.Component{
           onFocus={this.handleFormFocus.bind(this)}
           onChange={this.handleFormChange.bind(this)}
           label="Sample Information">
-            <LocationPicker ref='location'/>          
+            <PickerField ref='location'
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Location'
+              value=" "
+              options = {{
+                1: "Attic",
+                2: "Basement",
+                3: "Basement (Theater Rm)",
+                4: "Basement  HVAC Rm",
+                5: "Basement (exercise room)",
+                6: "Basement (finished)",
+                7: "Basement (main rm)",
+                8: "Basement (Playroom)",
+                9: "Basement (unfinished)",
+                10: "Basement/Crawlspace",
+                11: "Basement Bathroom",
+                12: "Basement Bedroom",
+                13: "Basement Office",
+                14: "Basement Stairwell (top)",
+                15: "Bathroom",
+                16: "Bathroom (hallway)",
+                17: "Bathroom (small, main level)",
+                18: "Bathroom (upper level)",
+                19: "Bedroom",
+                20: "Bedroom  (pink)",
+                21: "Bedroom (basement)",
+                22: "Bedroom (front up)",
+                23: "Bedroom (rear up)",
+                24: "Bedroom (upper level)",
+                25: "Bonus Room",
+                26: "Bonus Room (lower level)",
+                27: "Boys Rm",
+                28: "Break Rm.",
+                29: "Breakfast area",
+                30: "Classroom",
+                31: "Common area",
+                32: "Conference Rm",
+                33: "Conference Rm (upstairs)",
+                34: "Copy Room",
+                35: "Crawlspace",
+                36: "Customer Service",
+                37: "Den",
+                38: "Dining / Living Rm",
+                39: "Dining Room",
+                40: "Dining Room (large)",
+                41: "Dining Room (small)",
+                42: "Downstairs",
+                43: "Entry",
+                44: "Exterior",
+                45: "Family Room",
+                46: "Finished Attic",
+                47: "Finished Basement",
+                48: "Foyer",
+                49: "Front Office",
+                50: "Front Room",
+                51: "Garage",
+                52: "Guest Bedroom",
+                53: "Guest House",
+                54: "Hallway",
+                55: "Hallway (upstairs)",
+                56: "Hallway Upstairs",
+                57: "HVAC Rm",
+                58: "Inside",
+                59: "Kitchen",
+                60: "Kitchen (wall sample)",
+                61: "Kitchen / Den",
+                62: "Kitchen /Dining Room",
+                63: "Ladies Room",
+                64: "Landing (upstairs)",
+                65: "Large Office",
+                66: "Laundry  (interior wall)",
+                67: "Laundry Rm",
+                68: "Library (office)",
+                69: "Living / Dining",
+                70: "Living area (downstairs)",
+                71: "Living Room",
+                72: "Living Room / Kitchen",
+                73: "Lobby",
+                74: "Main Rm",
+                75: "Master Bathroom",
+                76: "Master Bedroom",
+                77: "Office",
+                78: "Outside",
+                79: "Reception area",
+                80: "Shipping" 
+                }
+              }
+            />               
             <InputField
               ref='sample_id'
               value={this.state.formData.sample_id}
@@ -163,9 +253,86 @@ class SampleForm extends React.Component{
                 return true;
               }]}
             />
-            <SampleTypePicker />
-            <SampleForPicker />      
-            <AnalysisPicker />             
+            <PickerField 
+              ref='sample_type'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Sample Type'
+              options = {{
+                  8: 'Micro 5',
+                  9: 'Zefon Air-O-Cell',
+                  10: 'Allergenco D Posi-Track',
+                  11: 'Swab',
+                  12: 'Tape',
+                  13: 'Bulk',
+                  14: 'Dust',
+                  15: 'Liquid',
+                  16: 'Anderson Air',
+                  17: 'Canister',
+                  18: 'Sorbent Tube',
+                  19: 'Cyclone',
+                  20: 'Other',
+                  21: 'Allergenco D',
+                  22: 'Culture Plate',
+                  23: 'Zefon Z5',
+                  24: 'Micro 5 Positrak',
+                  25: 'Mold Snap',
+                  26: 'Test Not Submitted',
+                  27: 'Zefon Via-Cell',
+                  28: 'Contact Plate',
+                  29: '',
+                  30: 'soil'
+                }
+              }
+            />  
+            <PickerField 
+              ref='sample_for'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Sample For'
+              options = {{
+                1: 'Mold',
+                2: 'Bacteria',
+                3: 'Coliforms',
+                4: 'Allergens',
+                5: 'Asbestos',
+                6: 'Particulate',
+                7: "VOC's",
+                8: 'Other',
+                9: 'E. coli',
+                }
+              }
+            />       
+            <PickerField 
+              ref='analysis_req'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Analysis Req'
+              options = {{
+                  1: 'Spore Trap 1',
+                  2: 'Direct 2',
+                  3: 'Culture	3',
+                  4: 'Sewage Screen 4',
+                  5: 'Colilert 5',
+                  6: 'Dust Mite 5',
+                  7: 'PLM	5',
+                  8: 'Point Count	5',
+                  9: 'TEM	5',
+                  10: 'TO-15	5',	
+                  11: 'Respirable	5',
+                  12: 'Other 5'
+                }
+              }
+            />                 
             <InputField
               style={{
                 width: 50 + '%', 
@@ -175,7 +342,29 @@ class SampleForm extends React.Component{
               value={this.state.formData.volume}
               placeholder='Volume'
             />  
-            <MeasurePicker />
+            <PickerField 
+              ref='measure'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Measure'
+              options = {{
+                  0 : ' ',
+                  1: 'L',
+                  2: 'in2',
+                  3: 'ft2',
+                  4: 'cm2',
+                  5: 'm2',
+                  6: 'm3',
+                  7: 'g',
+                  8: 'mL',
+                  9: 'swab',
+                  10: 'plate'
+                }
+              }
+            />      
             <InputField
               ref='RH'
               value={this.state.formData.RH}
