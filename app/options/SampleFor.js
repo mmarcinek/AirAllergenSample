@@ -27,18 +27,19 @@ class SampleForPicker extends React.Component {
     }}              
     label='Sample For'
     options = {{
-      1: 'Mold',
-      2: 'Bacteria',
-      3: 'Coliforms',
-      4: 'Allergens',
-      5: 'Asbestos',
-      6: 'Particulate',
-      7: "VOC's",
-      8: 'Other',
-      9: 'E. coli',
+      ' ': 'Sample For',
+      'Mold': 'Mold',
+      'Bacteria': 'Bacteria',
+      'Coliforms': 'Coliforms',
+      'Allergens': 'Allergens',
+      'Asbestos': 'Asbestos',
+      'Particulate': 'Particulate',
+      "VOC's": "VOC's",
+      'Other': 'Other',
+      'E. coli': 'E. coli',
       }
     }
-  />      
+  />         
   }
 }
 

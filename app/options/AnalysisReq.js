@@ -27,18 +27,19 @@ class AnalysisPicker extends React.Component {
     }}              
     label='Analysis Req'
     options = {{
-        1: 'Spore Trap 1',
-        2: 'Direct 2',
-        3: 'Culture	3',
-        4: 'Sewage Screen 4',
-        5: 'Colilert 5',
-        6: 'Dust Mite 5',
-        7: 'PLM	5',
-        8: 'Point Count	5',
-        9: 'TEM	5',
-        10: 'TO-15	5',	
-        11: 'Respirable	5',
-        12: 'Other 5'
+        ' ': 'Analysis Req',
+        'Spore Trap 1': 'Spore Trap 1',
+        'Direct 2': 'Direct 2',
+        'Culture	3': 'Culture	3',
+        'Sewage Screen 4': 'Sewage Screen 4',
+        'Colilert 5': 'Colilert 5',
+        'Dust Mite 5': 'Dust Mite 5',
+        'PLM	5': 'PLM	5',
+        'Point Count	5': 'Point Count	5',
+        'TEM	5': 'TEM	5',
+        'TO-15	5': 'TO-15	5',	
+        'Respirable	5': 'Respirable	5',
+        'Other 5': 'Other 5'
       }
     }
   />      

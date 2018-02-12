@@ -27,17 +27,17 @@ class MeasurePicker extends React.Component {
     }}              
     label='Measure'
     options = {{
-        0 : ' ',
-        1: 'L',
-        2: 'in2',
-        3: 'ft2',
-        4: 'cm2',
-        5: 'm2',
-        6: 'm3',
-        7: 'g',
-        8: 'mL',
-        9: 'swab',
-        10: 'plate'
+        ' ' : 'Pick Measurement',
+        'L': 'L',
+        'in2': 'in2',
+        'ft2': 'ft2',
+        'cm2': 'cm2',
+        'm2': 'm2',
+        'm3': 'm3',
+        'g': 'g',
+        'mL': 'mL',
+        'swab': 'swab',
+        'plate': 'plate'
       }
     }
   />      
