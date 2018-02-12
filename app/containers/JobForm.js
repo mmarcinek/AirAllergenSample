@@ -17,6 +17,7 @@ import {
   Form,
   Separator,
   InputField, 
+  PickerField,
   DatePickerField,
   TimePickerField
 } from 'react-native-form-generator';
