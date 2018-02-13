@@ -72,7 +72,7 @@ class WrappedIcon extends React.Component {
   }
 }
 
-class SampleEdit extends React.Component{
+class SampleForm extends React.Component{
   constructor(props){
     super(props);
 
@@ -107,19 +107,15 @@ class SampleEdit extends React.Component{
 
   saveJob() {
     realm.write(() => {
-      realm.create('Sample', {
-        table_id: this.props.navigation.state.params.job_id,
-        location: this.state.formData.location || '',
-        sample_id: this.state.formData.sample_id,        
-        sample_type: this.state.formData.sample_type || '',
-        sample_for: this.state.formData.sample_for || '',
-        analysis_req: this.state.formData.analysis_req || '',        
-        volume: Number(this.state.formData.volume) || 0,
-        measure: this.state.formData.measure || '',
-        RH: Number(this.state.formData.RH) || 0.0,
-        temp: Number(this.state.formData.temp) || 0.0,
-        notes: this.state.formData.notes || ''
-      })
+      location = this.state.formData.location;    
+      sample_type = this.state.formData.sample_type;
+      sample_for = this.state.formData.sample_for;
+      analysis_req = this.state.formData.analysis_req;       
+      volume = Number(this.state.formData.volume) || 0;
+      measure = this.state.formData.measure;
+      RH = Number(this.state.formData.RH) || 0;
+      temp = Number(this.state.formData.temp) || 0;
+      notes = this.state.formData.notes || '';
     });
 
     this.advanceOnSave('advancing');
@@ -139,6 +135,8 @@ class SampleEdit extends React.Component{
   }
 
   render(){
+    // let samples = Array.from(realm.objects('Sample'));
+    // this.sample = samples.filtered('sample_id = ' + this.props.navigation.state.params.sample_id)
     return (
       <ScrollView keyboardShouldPersistTaps={'always'} style={{backgroundColor: '#fff', height:200}}>
         <Form
@@ -146,7 +144,98 @@ class SampleEdit extends React.Component{
           onFocus={this.handleFormFocus.bind(this)}
           onChange={this.handleFormChange.bind(this)}
           label="Sample Information">
-            <LocationPicker/>          
+            <PickerField ref='location'
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Location'
+              value=" "
+              options = {{
+                ' ' : 'Location',
+                'Attic': "Attic",
+                'Basement': "Basement",
+                'Basement (Theater Rm)': "Basement (Theater Rm)",
+                'Basement  HVAC Rm': "Basement  HVAC Rm",
+                'Basement (exercise room)': "Basement (exercise room)",
+                'Basement (finished)': "Basement (finished)",
+                'Basement (main rm)': "Basement (main rm)",
+                'Basement (Playroom)': "Basement (Playroom)",
+                'Basement (unfinished)': "Basement (unfinished)",
+                'Basement/Crawlspace': "Basement/Crawlspace",
+                'Basement Bathroom': "Basement Bathroom",
+                'Basement Bedroom': "Basement Bedroom",
+                'Basement Office': "Basement Office",
+                'Basement Stairwell (top)': "Basement Stairwell (top)",
+                'Bathroom': "Bathroom",
+                'Bathroom (hallway)': "Bathroom (hallway)",
+                'Bathroom (small, main level)': "Bathroom (small, main level)",
+                'Bathroom (upper level)': "Bathroom (upper level)",
+                'Bedroom': "Bedroom",
+                'Bedroom  (pink)': "Bedroom  (pink)",
+                'Bedroom (basement)': "Bedroom (basement)",
+                'Bedroom (front up)': "Bedroom (front up)",
+                'Bedroom (rear up)': "Bedroom (rear up)",
+                'Bedroom (upper level)': "Bedroom (upper level)",
+                'Bonus Room': "Bonus Room",
+                'Bonus Room (lower level)': "Bonus Room (lower level)",
+                'Boys Rm': "Boys Rm",
+                'Break Rm.': "Break Rm.",
+                'Breakfast area': "Breakfast area",
+                'Classroom': "Classroom",
+                'Common area': "Common area",
+                'Conference Rm': "Conference Rm",
+                'Conference Rm (upstairs)': "Conference Rm (upstairs)",
+                'Copy Room': "Copy Room",
+                'Crawlspace': "Crawlspace",
+                'Customer Service': "Customer Service",
+                'Den': "Den",
+                'Dining / Living Rm': "Dining / Living Rm",
+                'Dining Room': "Dining Room",
+                'Dining Room (large)': "Dining Room (large)",
+                'Dining Room (small)': "Dining Room (small)",
+                'Downstairs': "Downstairs",
+                'Entry': "Entry",
+                'Exterior': "Exterior",
+                'Family Room': "Family Room",
+                'Finished Attic': "Finished Attic",
+                'Finished Basement': "Finished Basement",
+                'Foyer': "Foyer",
+                'Front Office': "Front Office",
+                'Front Room': "Front Room",
+                'Garage': "Garage",
+                'Guest Bedroom': "Guest Bedroom",
+                'Guest House': "Guest House",
+                'Hallway': "Hallway",
+                'Hallway (upstairs)': "Hallway (upstairs)",
+                'Hallway Upstairs': "Hallway Upstairs",
+                'HVAC Rm': "HVAC Rm",
+                'Inside': "Inside",
+                'Kitchen': "Kitchen",
+                'Kitchen (wall sample)': "Kitchen (wall sample)",
+                'Kitchen / Den': "Kitchen / Den",
+                'Kitchen /Dining Room': "Kitchen /Dining Room",
+                'Ladies Room': "Ladies Room",
+                'Landing (upstairs)': "Landing (upstairs)",
+                'Large Office': "Large Office",
+                'Laundry  (interior wall)': "Laundry  (interior wall)",
+                'Laundry Rm': "Laundry Rm",
+                'Library (office)': "Library (office)",
+                'Living / Dining': "Living / Dining",
+                'Living area (downstairs)': "Living area (downstairs)",
+                'Living Room': "Living Room",
+                'Living Room / Kitchen': "Living Room / Kitchen",
+                'Lobby': "Lobby",
+                'Main Rm': "Main Rm",
+                'Master Bathroom': "Master Bathroom",
+                'Master Bedroom': "Master Bedroom",
+                'Office': "Office",
+                'Outside': "Outside",
+                'Reception area': "Reception area",
+                'Shipping': "Shipping" 
+                }
+              }
+            />               
             <InputField
               ref='sample_id'
               value={this.state.formData.sample_id}
@@ -163,9 +252,88 @@ class SampleEdit extends React.Component{
                 return true;
               }]}
             />
-            <SampleTypePicker />
-            <SampleForPicker />      
-            <AnalysisPicker />             
+            <PickerField 
+              ref='sample_type'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Sample Type'
+              options = {{
+                  ' ': 'Sample Type',
+                  'Micro 5': 'Micro 5',
+                  'Zefon Air-O-Cell': 'Zefon Air-O-Cell',
+                  'Allergenco D Posi-Track': 'Allergenco D Posi-Track',
+                  'Swab': 'Swab',
+                  'Tape': 'Tape',
+                  'Bulk': 'Bulk',
+                  'Dust': 'Dust',
+                  'Liquid': 'Liquid',
+                  'Anderson Air': 'Anderson Air',
+                  'Canister': 'Canister',
+                  'Sorbent Tube': 'Sorbent Tube',
+                  'Cyclone': 'Cyclone',
+                  'Other': 'Other',
+                  'Allergenco D': 'Allergenco D',
+                  'Culture Plate': 'Culture Plate',
+                  'Zefon Z5': 'Zefon Z5',
+                  'Micro 5 Positrak': 'Micro 5 Positrak',
+                  'Mold Snap': 'Mold Snap',
+                  'Test Not Submitted': 'Test Not Submitted',
+                  'Zefon Via-Cell': 'Zefon Via-Cell',
+                  'Contact Plate': 'Contact Plate',
+                  'Soil': 'Soil'
+                }
+              }
+            />  
+            <PickerField 
+              ref='sample_for'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Sample For'
+              options = {{
+                ' ': 'Sample For',
+                'Mold': 'Mold',
+                'Bacteria': 'Bacteria',
+                'Coliforms': 'Coliforms',
+                'Allergens': 'Allergens',
+                'Asbestos': 'Asbestos',
+                'Particulate': 'Particulate',
+                "VOC's": "VOC's",
+                'Other': 'Other',
+                'E. coli': 'E. coli',
+                }
+              }
+            />       
+            <PickerField 
+              ref='analysis_req'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Analysis Req'
+              options = {{
+                  ' ': 'Analysis Req',
+                  'Spore Trap 1': 'Spore Trap 1',
+                  'Direct 2': 'Direct 2',
+                  'Culture	3': 'Culture	3',
+                  'Sewage Screen 4': 'Sewage Screen 4',
+                  'Colilert 5': 'Colilert 5',
+                  'Dust Mite 5': 'Dust Mite 5',
+                  'PLM	5': 'PLM	5',
+                  'Point Count	5': 'Point Count	5',
+                  'TEM	5': 'TEM	5',
+                  'TO-15	5': 'TO-15	5',	
+                  'Respirable	5': 'Respirable	5',
+                  'Other 5': 'Other 5'
+                }
+              }
+            />                 
             <InputField
               style={{
                 width: 50 + '%', 
@@ -175,7 +343,29 @@ class SampleEdit extends React.Component{
               value={this.state.formData.volume}
               placeholder='Volume'
             />  
-            <MeasurePicker />
+            <PickerField 
+              ref='measure'
+              value={this.state.formData.state}
+              style={{
+                width: 50 + '%', 
+                alignItems:'center'
+              }}              
+              label='Measure'
+              options = {{
+                  ' ' : 'Measure',
+                  'L': 'L',
+                  'in2': 'in2',
+                  'ft2': 'ft2',
+                  'cm2': 'cm2',
+                  'm2': 'm2',
+                  'm3': 'm3',
+                  'g': 'g',
+                  'mL': 'mL',
+                  'swab': 'swab',
+                  'plate': 'plate'
+                }
+              }
+            />      
             <InputField
               ref='RH'
               value={this.state.formData.RH}
@@ -228,3 +418,4 @@ class SampleEdit extends React.Component{
     }
   }
 export default SampleEdit;
+
