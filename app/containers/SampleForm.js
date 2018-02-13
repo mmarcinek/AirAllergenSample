@@ -399,7 +399,7 @@ class SampleForm extends React.Component{
             onPress={this.saveJob.bind(this)}
             underlayColor='#78ac05'
           >
-            <Text style={{fontSize:19,padding:15,}}>Save Job</Text>
+            <Text style={{fontSize:19,padding:15,}}>Save Sample</Text>
           </TouchableHighlight>
           <TouchableHighlight
             style={{ 

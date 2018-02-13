@@ -41,7 +41,7 @@ const {
         <View style={styles.container}>
           <TouchableHighlight 
             style={styles.button} 
-            onPress={() => { this.navigate('JobForm', job)} }
+            onPress={() => { this.navigate('JobEdit', job)} }
             underlayColor='#78ac05' >
             <Text style={styles.btnText}>Update Job</Text>
           </TouchableHighlight>
