@@ -106,18 +106,18 @@ class SampleEdit extends React.Component{
   }
 
   saveJob() {
-    let sample = realm.objects('Sample').filtered(`sample_id = "${this.props.navigation.state.params.sample_id}"`);
+    let sample = realm.objects('Sample').filtered(`sample_id = "${this.props.navigation.state.params.sample_id}"`)[0];
 
     realm.write(() => {
-      sample.location = this.state.formData.location;     
-      sample.sample_type = this.state.formData.sample_type;
-      sample.sample_for = this.state.formData.sample_for;
-      sample.analysis_req = this.state.formData.analysis_req;     
-      sample.volume = Number(this.state.formData.volume) || 0;
-      sample.measure = this.state.formData.measure;
-      sample.RH = Number(this.state.formData.RH) || 0;
-      sample.temp = Number(this.state.formData.temp) || 0;
-      sample.notes = this.state.formData.notes || '';
+      sample.location = this.state.formData.location || this.props.navigation.state.params.location;     
+      sample.sample_type = this.state.formData.sample_type || this.props.navigation.state.params.sample_type;
+      sample.sample_for = this.state.formData.sample_for || this.props.navigation.state.params.sample_for;
+      sample.analysis_req = this.state.formData.analysis_req || this.props.navigation.state.params.analysis_req;     
+      sample.volume = Number(this.state.formData.volume) || this.props.navigation.state.params.volume;
+      sample.measure = this.state.formData.measure || this.props.navigation.state.params.measure;
+      sample.RH = Number(this.state.formData.RH) || this.props.navigation.state.params.RH;
+      sample.temp = Number(this.state.formData.temp) || this.props.navigation.state.params.temp;
+      sample.notes = this.state.formData.notes || this.props.navigation.state.params.notes;
     });
 
     this.advanceOnSave('advancing');
