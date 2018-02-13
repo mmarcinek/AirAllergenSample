@@ -52,7 +52,7 @@ class JobTable extends Component {
                 borderLeftColor:'#d3d3d3',
                 borderLeftWidth: 1 
               }} 
-              onPress={() => {this.editSample(detail.sample_id)}}              
+              onPress={() => {this.editSample(detail)}}              
             >
               <View style={{marginTop: -5 }}>
                 <Icon name="edit" />

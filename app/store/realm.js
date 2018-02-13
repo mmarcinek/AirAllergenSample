@@ -27,6 +27,7 @@ class Sample extends Realm.Object {}
       location: {type: 'string'},
       sample_id: {type: 'string'},      
       sample_type: {type: 'string'},
+      sample_for: {type: 'string'},
       analysis_req: {type: 'string'},
       volume: {type: 'int'},
       measure: {type: 'string'},

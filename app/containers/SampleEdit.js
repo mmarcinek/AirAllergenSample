@@ -72,22 +72,22 @@ class WrappedIcon extends React.Component {
   }
 }
 
-class SampleForm extends React.Component{
+class SampleEdit extends React.Component{
   constructor(props){
     super(props);
 
     this.state = {
       formData: {
-        location: this.props.navigation.state.params.location || '',
-        sample_id: this.props.navigation.state.params.sample_id || '',
-        sample_type: this.props.navigation.state.params.sample_type || '',
-        sample_for: this.props.navigation.state.params.sample_for || '',
-        analysis_req: this.props.navigation.state.params.analysis_req || '',    
-        volume: this.props.navigation.state.params.volume || '',
-        measure: this.props.navigation.state.measure || '',
-        RH: this.props.navigation.state.params.RH || '',
-        temp: this.props.navigation.state.params.temp || '',
-        notes: this.props.navigation.state.params.notes || ''
+        location: this.props.navigation.state.params.location,
+        sample_id: this.props.navigation.state.params.sample_id.toString(),
+        sample_type: this.props.navigation.state.params.sample_type,
+        sample_for: this.props.navigation.state.params.sample_for,
+        analysis_req: this.props.navigation.state.params.analysis_req,    
+        volume: this.props.navigation.state.params.volume.toString(),
+        measure: this.props.navigation.state.params.measure.toString(),
+        RH: this.props.navigation.state.params.RH.toString(),
+        temp: this.props.navigation.state.params.temp.toString(),
+        notes: this.props.navigation.state.params.notes
       }
     }
   }
@@ -106,16 +106,18 @@ class SampleForm extends React.Component{
   }
 
   saveJob() {
+    let sample = realm.objects('Sample').filtered(`sample_id = "${this.props.navigation.state.params.sample_id}"`);
+
     realm.write(() => {
-      location = this.state.formData.location;    
-      sample_type = this.state.formData.sample_type;
-      sample_for = this.state.formData.sample_for;
-      analysis_req = this.state.formData.analysis_req;       
-      volume = Number(this.state.formData.volume) || 0;
-      measure = this.state.formData.measure;
-      RH = Number(this.state.formData.RH) || 0;
-      temp = Number(this.state.formData.temp) || 0;
-      notes = this.state.formData.notes || '';
+      sample.location = this.state.formData.location;     
+      sample.sample_type = this.state.formData.sample_type;
+      sample.sample_for = this.state.formData.sample_for;
+      sample.analysis_req = this.state.formData.analysis_req;     
+      sample.volume = Number(this.state.formData.volume) || 0;
+      sample.measure = this.state.formData.measure;
+      sample.RH = Number(this.state.formData.RH) || 0;
+      sample.temp = Number(this.state.formData.temp) || 0;
+      sample.notes = this.state.formData.notes || '';
     });
 
     this.advanceOnSave('advancing');
@@ -150,7 +152,7 @@ class SampleForm extends React.Component{
                 alignItems:'center'
               }}              
               label='Location'
-              value=" "
+              value={this.state.formData.location}
               options = {{
                 ' ' : 'Location',
                 'Attic': "Attic",
@@ -254,7 +256,7 @@ class SampleForm extends React.Component{
             />
             <PickerField 
               ref='sample_type'
-              value={this.state.formData.state}
+              value={this.state.formData.sample_type}
               style={{
                 width: 50 + '%', 
                 alignItems:'center'
@@ -289,7 +291,7 @@ class SampleForm extends React.Component{
             />  
             <PickerField 
               ref='sample_for'
-              value={this.state.formData.state}
+              value={this.state.formData.sample_for}
               style={{
                 width: 50 + '%', 
                 alignItems:'center'
@@ -311,7 +313,7 @@ class SampleForm extends React.Component{
             />       
             <PickerField 
               ref='analysis_req'
-              value={this.state.formData.state}
+              value={this.state.formData.analysis_req}
               style={{
                 width: 50 + '%', 
                 alignItems:'center'
@@ -345,7 +347,7 @@ class SampleForm extends React.Component{
             />  
             <PickerField 
               ref='measure'
-              value={this.state.formData.state}
+              value={this.state.formData.measure}
               style={{
                 width: 50 + '%', 
                 alignItems:'center'
